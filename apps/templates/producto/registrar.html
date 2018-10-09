@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block imports %}
+
+{% endblock %}
+
+{% block title %}
+Registrar Nuevo Producto
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+      <div class="card">
+          <form class="form-horizontal">
+              <div class="card-body">
+                  <h4 class="card-title">Personal Info</h4>
+                  <div class="form-group row">
+
+                    {% if form.errors %}
+                      <p style="color: red;">Por favor corrige lo siguiente:</p>
+                    {% endif %}
+                      <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                				<ul>
+                				    {{ form.as_p }}
+                            <button type="submit" class="btn btn-success" name="enviar">Registrar</button>
+                        </ul>
+                      </form>
+                 </div>
+                </div>
+              </form>
+            </div>
+        </div>
+</div>
+
+{% endblock %}
