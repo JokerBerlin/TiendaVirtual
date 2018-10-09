@@ -35,7 +35,7 @@ class ProductoForm(ModelForm):
             'marcaProducto': forms.TextInput(attrs={'class': 'form-control'}),
             'imagenProducto': forms.FileInput(attrs={'class': 'form-control'}),
             'stockProducto': forms.NumberInput(attrs={'class': 'form-control'}),
-            'descripcionProducto': forms.Textarea(attrs={'class': 'form-control'}),
+            'descripcionProducto': forms.Textarea(attrs={'class': 'form-control','height':'50px','cols':"40", 'rows':"3", 'style':"resize: both",}),
             'proveedor': forms.Select(attrs={'class': 'form-control'}),
             'categoria': forms.Select(attrs={'class': 'form-control'}),
         }
