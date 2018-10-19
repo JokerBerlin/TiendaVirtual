@@ -20,3 +20,10 @@ def registrarProducto(request):
     template = loader.get_template('producto/registrar.html')
     context = {'form': form}
     return HttpResponse(template.render(context, request))
+
+def listarProducto(request):
+    oProducto = Producto.objects.all()
+    print(oProducto)
+    template = loader.get_template('producto/listar.html')
+    context = {'oProducto':oProducto,}
+    return HttpResponse(template.render(context, request))

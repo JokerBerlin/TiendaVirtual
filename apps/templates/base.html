@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="/static/assets/images/favicon.png">
-    <title>Matrix Template |{% block title %}
+    <title>Tienda Zapatos |{% block title %}
          {% endblock %}</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="/static/assets/libs/select2/dist/css/select2.min.css">
@@ -19,6 +19,22 @@
     <link rel="stylesheet" type="text/css" href="/static/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="/static/assets/libs/quill/dist/quill.snow.css">
     <link href="/static/dist/css/style.min.css" rel="stylesheet">
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="/static/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="/static/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/static/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="/static/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/static/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="/static/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="/static/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="/static/dist/js/custom.min.js"></script>
+
     {% block imports %}
     {% endblock %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -239,12 +255,13 @@
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="widgets.html" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Widgets</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Tables</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Full Width</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Forms </span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Almacen </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Form Basic </span></a></li>
-                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Form Wizard </span></a></li>
+                                <li class="sidebar-item"><a href="/Producto/registrar/" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Nuevo Producto </span></a></li>
+                                <li class="sidebar-item"><a href="/Producto/listar/" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Listar Productos </span></a></li>
                             </ul>
                         </li>
+
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-buttons.html" aria-expanded="false"><i class="mdi mdi-relative-scale"></i><span class="hide-menu">Buttons</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Icons </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
@@ -343,21 +360,6 @@
     <!-- End Wrapper -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="/static/assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="/static/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="/static/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="/static/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="/static/assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="/static/dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="/static/dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="/static/dist/js/custom.min.js"></script>
     <!-- This Page JS -->
     <script src="/static/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
     <script src="/static/dist/js/pages/mask/mask.init.js"></script>
