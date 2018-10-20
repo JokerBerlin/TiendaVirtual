@@ -14,15 +14,19 @@ from django.conf import settings
 def Login(request):
     next = request.GET.get('next', '/home/')
     if request.method == "POST":
+
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         print (user)
 
         if user is not None:
+
             if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect(next)
+            elif not user.is_staff or user.is_superuser:
+                return HttpResponseRedirect(settings.LOGIN_URL)
             else:
                 return HttpResponse("Inactive user.")
         else:

@@ -1,8 +1,8 @@
-from django.shortcuts import render, render_to_response, redirect
+from django.shortcuts import render, render_to_response, redirect, get_object_or_404
 from apps.models import *
 from apps.formularios.productoForm import *
 from django.template import loader
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
