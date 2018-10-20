@@ -235,7 +235,7 @@ button::-moz-focus-inner {
   color: white;
   font-style: normal;
   font-size: 28px;
-  outline:none;	
+  outline:none;
  }
   .mfp-close:hover, .mfp-close:focus {
     opacity: 1; }
@@ -249,7 +249,7 @@ button::-moz-focus-inner {
   right: -6px;
   text-align: right;
   padding-right: 6px;
-  width: 100%; 
+  width: 100%;
 }
 .login h3,.select-city h3 {
   margin: 20px;
@@ -311,7 +311,7 @@ button::-moz-focus-inner {
 	outline:none;
 	color: #fff;
 	text-transform: uppercase;
-	
+
 }
 .login input[type="submit"]:hover,.signup input[type="submit"]:hover{
 	background:#000;
@@ -363,4 +363,4 @@ button::-moz-focus-inner {
       font-size: 17px;
       margin: 5px 0px 16px;
   }
-} 
+}
