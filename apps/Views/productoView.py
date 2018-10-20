@@ -21,7 +21,7 @@ def registrarProducto(request):
 
             producto = form.save()
             producto.save()
-            return HttpResponseRedirect('listar_producto')
+            return HttpResponseRedirect('/Producto/listar/')
     else:
         form = ProductoForm()
             #return render(request, 'producto/registrar.html')
