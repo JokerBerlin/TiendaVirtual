@@ -12,6 +12,6 @@ urlpatterns = [
     path('home/', mostrarInicio),
     path('Producto/registrar/', registrarProducto, name = "crear_producto"),
     path('Producto/listar/', listarProducto, name = "listar_producto"),
-
+    path('Tienda/', pruebaTienda),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

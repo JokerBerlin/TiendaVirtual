@@ -43,3 +43,8 @@ def mostrarInicio(request):
     template = loader.get_template('login/index.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+def pruebaTienda(request):
+    template = loader.get_template('base_tienda.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
