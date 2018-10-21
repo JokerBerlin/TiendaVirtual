@@ -15,6 +15,7 @@ urlpatterns = [
     path('Producto/listar/', listarProducto, name = "listar_producto"),
     path('Tienda/inicio/', pruebaTienda),
     path('Tienda/contacto/', mostrarContacto),
+    path('Tienda/nosotros/', mostrarSobreNosotros),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

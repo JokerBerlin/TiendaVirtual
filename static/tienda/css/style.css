@@ -378,7 +378,7 @@ button.w3view-cart {
 }
 .carousel-caption {
     position: inherit;
-    min-height:600px;
+    min-height:500px;
     padding-top:8em;
 }
 /*-- carousel-slider --*/
