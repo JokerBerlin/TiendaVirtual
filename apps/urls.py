@@ -16,6 +16,8 @@ urlpatterns = [
     path('Tienda/inicio/', pruebaTienda),
     path('Tienda/contacto/', mostrarContacto),
     path('Tienda/nosotros/', mostrarSobreNosotros),
+    path('Tienda/terminos/', mostrarTerminos),
+    path('Tienda/privacidad/', mostrarPrivacidad),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

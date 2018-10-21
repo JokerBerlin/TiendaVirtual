@@ -17,3 +17,13 @@ def mostrarSobreNosotros(request):
     template = loader.get_template('tienda/sobreNosotros.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+def mostrarTerminos(request):
+    template = loader.get_template('tienda/terminos.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+def mostrarPrivacidad(request):
+    template = loader.get_template('tienda/privacidad.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
