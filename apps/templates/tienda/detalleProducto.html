@@ -70,7 +70,7 @@ Tienda Zapatos
 						<a href="index.html">Home</a>
 						<i>|</i>
 					</li>
-					<li>Single Page</li>
+					<li>Detalle del Producto</li>
 				</ul>
 			</div>
 		</div>
@@ -80,7 +80,7 @@ Tienda Zapatos
 	<div class="banner-bootom-w3-agileits">
 		<div class="container">
 			<!-- tittle heading -->
-			<h3 class="tittle-w3l">Single Page
+			<h3 class="tittle-w3l">Detalle del Producto {{ oProducto.nombreProducto }}
 				<span class="heading-style">
 					<i></i>
 					<i></i>
@@ -92,10 +92,10 @@ Tienda Zapatos
 				<div class="grid images_3_of_2">
 					<div class="flexslider">
 						<ul class="slides">
-							<li data-thumb="/static/tienda/images/si.jpg">
+							<ul data-thumb="/media/{{ oProducto.imagenProducto }}">
 								<div class="thumb-image">
-									<img src="/static/tienda/images/si.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
-							</li>
+									<img src="/media/{{ oProducto.imagenProducto }}" data-imagezoom="true" class="img-responsive" alt=""> </div>
+							</ul>
 							<!-- <li data-thumb="/static/tienda/images/si2.jpg">
 								<div class="thumb-image">
 									<img src="/static/tienda/images/si2.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
@@ -110,7 +110,7 @@ Tienda Zapatos
 				</div>
 			</div>
 			<div class="col-md-7 single-right-left simpleCart_shelfItem">
-				<h3>Zeeba Premium Basmati Rice - 5 KG</h3>
+				<h3>{{ oProducto.nombreProducto }}</h3>
 				<div class="rating1">
 					<span class="starRating">
 						<input id="rating5" type="radio" name="rating" value="5">
@@ -126,63 +126,39 @@ Tienda Zapatos
 					</span>
 				</div>
 				<p>
-					<span class="item_price">$950.00</span>
-					<del>$1300.00</del>
+					<span class="item_price">S/.{{ oProducto.precioOfertaProducto }}</span>
+					<del>S/.{{ oProducto.precioProducto }}</del>
 					<label>Free delivery</label>
 				</p>
 				<div class="single-infoagile">
 					<ul>
+						<h4>Descripción: </h4>
 						<li>
-							Cash on Delivery Eligible.
+							{{ oProducto.descripcionProducto }}
 						</li>
+						<h4>Talla: </h4>
 						<li>
-							Shipping Speed to Delivery.
+							{{ oProducto.tallaProducto }}
 						</li>
+						<h4>Tipo: </h4>
 						<li>
-							Sold and fulfilled by Supple Tek (3.6 out of 5 | 8 ratings).
+							{{ oProducto.tipoProducto }}
 						</li>
+						<h4>Marca: </h4>
 						<li>
-							1 offer from
-							<span class="item_price">$950.00</span>
+							{{ oProducto.marcaProducto }}
+						</li>
+						<h4>Stock: </h4>
+						<li>
+							<input type="number" name="" value="1" min="1" max="{{ oProducto.stockProducto }}">
 						</li>
 					</ul>
 				</div>
-				<div class="product-single-w3l">
-					<p>
-						<i class="fa fa-hand-o-right" aria-hidden="true"></i>This is a
-						<label>Vegetarian</label> product.</p>
-					<ul>
-						<li>
-							Best for Biryani and Pulao.
-						</li>
-						<li>
-							After cooking, Zeeba Basmati rice grains attain an extra ordinary length of upto 2.4 cm/~1 inch.
-						</li>
-						<li>
-							Zeeba Basmati rice adheres to the highest food afety standards as your health is paramount to us.
-						</li>
-						<li>
-							Contains only the best and purest grade of basmati rice grain of Export quality.
-						</li>
-					</ul>
-					<p>
-						<i class="fa fa-refresh" aria-hidden="true"></i>All food products are
-						<label>non-returnable.</label>
-					</p>
-				</div>
+
 				<div class="occasion-cart">
 					<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 						<form action="#" method="post">
 							<fieldset>
-								<input type="hidden" name="cmd" value="_cart" />
-								<input type="hidden" name="add" value="1" />
-								<input type="hidden" name="business" value=" " />
-								<input type="hidden" name="item_name" value="Zeeba Premium Basmati Rice - 5 KG" />
-								<input type="hidden" name="amount" value="950.00" />
-								<input type="hidden" name="discount_amount" value="1.00" />
-								<input type="hidden" name="currency_code" value="USD" />
-								<input type="hidden" name="return" value=" " />
-								<input type="hidden" name="cancel_return" value=" " />
 								<input type="submit" name="submit" value="Add to cart" class="button" />
 							</fieldset>
 						</form>

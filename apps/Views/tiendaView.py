@@ -1,6 +1,7 @@
 from django.template import loader
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 
+from apps.models import *
 
 def pruebaTienda(request):
     template = loader.get_template('tienda/mostrarTienda.html')
@@ -33,9 +34,10 @@ def mostrarAyuda(request):
     context = {}
     return HttpResponse(template.render(context, request))
 
-def detalleProductoTienda(request):
+def detalleProductoTienda(request, id):
+    oProducto = Producto.objects.get(id=id)
     template = loader.get_template('tienda/detalleProducto.html')
-    context = {}
+    context = {'oProducto':oProducto}
     return HttpResponse(template.render(context, request))
 
 def listarCarrito(request):

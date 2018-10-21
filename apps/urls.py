@@ -19,7 +19,7 @@ urlpatterns = [
     path('Tienda/terminos/', mostrarTerminos),
     path('Tienda/privacidad/', mostrarPrivacidad),
     path('Tienda/ayuda/', mostrarAyuda),
-    path('Tienda/producto/detalle/', detalleProductoTienda),
+    path('Tienda/productoDetalle/<int:id>', detalleProductoTienda),
     path('Tienda/carrito/listar/', listarCarrito),
     path('Tienda/pago/', mostrarPago),
 
