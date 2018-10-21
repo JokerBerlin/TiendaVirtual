@@ -27,3 +27,8 @@ def mostrarPrivacidad(request):
     template = loader.get_template('tienda/privacidad.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+def mostrarAyuda(request):
+    template = loader.get_template('tienda/ayuda.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
