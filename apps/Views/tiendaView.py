@@ -32,3 +32,18 @@ def mostrarAyuda(request):
     template = loader.get_template('tienda/ayuda.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+def detalleProductoTienda(request):
+    template = loader.get_template('tienda/detalleProducto.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+def listarCarrito(request):
+    template = loader.get_template('tienda/listarCarrito.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+def mostrarPago(request):
+    template = loader.get_template('tienda/pago.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
