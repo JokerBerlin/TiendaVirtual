@@ -4,8 +4,9 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404
 from apps.models import *
 
 def pruebaTienda(request):
+    oCategorias = Categoria.objects.all()
     template = loader.get_template('tienda/mostrarTienda.html')
-    context = {}
+    context = {'oCategorias':oCategorias}
     return HttpResponse(template.render(context, request))
 
 

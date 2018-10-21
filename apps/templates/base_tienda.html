@@ -63,7 +63,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script> -->
 	<!-- //popup modal (for signin & signup)-->
 
-	<!-- cart-js 
+	<!-- cart-js
 	<script src="/static/tienda/js/minicart.js"></script>
 	<script>
 		paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
@@ -392,56 +392,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<div class="agile_inner_drop_nav_info">
 											<div class="col-sm-4 multi-gd-img">
 												<ul class="multi-column-dropdown">
+													{% for i in oCategorias %}
+														<li>
+															<a href="/Categoria/{{ i.id }}/">{{ i.nombreCategoria }}</a>
+														</li>
+													{% endfor %}
+
 													<li>
-														<a href="product.html">Bakery</a>
-													</li>
-													<li>
-														<a href="product.html">Baking Supplies</a>
-													</li>
-													<li>
-														<a href="product.html">Coffee, Tea & Beverages</a>
-													</li>
-													<li>
-														<a href="product.html">Dried Fruits, Nuts</a>
-													</li>
-													<li>
-														<a href="product.html">Sweets, Chocolate</a>
-													</li>
-													<li>
-														<a href="product.html">Spices & Masalas</a>
-													</li>
-													<li>
-														<a href="product.html">Jams, Honey & Spreads</a>
+														<img src="/media/categoriaImagen.jpg" alt="">
 													</li>
 												</ul>
-											</div>
-											<div class="col-sm-4 multi-gd-img">
-												<ul class="multi-column-dropdown">
-													<li>
-														<a href="product.html">Pickles</a>
-													</li>
-													<li>
-														<a href="product.html">Pasta & Noodles</a>
-													</li>
-													<li>
-														<a href="product.html">Rice, Flour & Pulses</a>
-													</li>
-													<li>
-														<a href="product.html">Sauces & Cooking Pastes</a>
-													</li>
-													<li>
-														<a href="product.html">Snack Foods</a>
-													</li>
-													<li>
-														<a href="product.html">Oils, Vinegars</a>
-													</li>
-													<li>
-														<a href="product.html">Meat, Poultry & Seafood</a>
-													</li>
-												</ul>
-											</div>
-											<div class="col-sm-4 multi-gd-img">
-												<img src="/static/tienda/images/nav.png" alt="">
 											</div>
 											<div class="clearfix"></div>
 										</div>
