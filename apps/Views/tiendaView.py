@@ -5,8 +5,9 @@ from apps.models import *
 
 def pruebaTienda(request):
     oCategorias = Categoria.objects.all()
+    oProductos = Producto.objects.filter(categoria=2)[:3]
     template = loader.get_template('tienda/mostrarTienda.html')
-    context = {'oCategorias':oCategorias}
+    context = {'oCategorias':oCategorias,'oProductos':oProductos}
     return HttpResponse(template.render(context, request))
 
 
