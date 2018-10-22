@@ -63,6 +63,14 @@ def mostrarPago(request):
 
 def listarProductoTienda(request):
     oCategorias = Categoria.objects.all()
+    oProductos = Producto.objects.all().order_by('-id')
+    print(oProductos)
+    producto=[]
+    for value in oProductos:
+        print(value.id)
+        if int(value.id) % 3 == 0:
+            producto.append(value.id)
+    print(producto)
     template = loader.get_template('tienda/listarProductos.html')
-    context = {'oCategorias':oCategorias}
+    context = {'oProductos':oProductos,'oCategorias':oCategorias,'producto':producto}
     return HttpResponse(template.render(context, request))

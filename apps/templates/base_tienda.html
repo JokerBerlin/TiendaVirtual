@@ -385,13 +385,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<a class="nav-stylehead" href="/Tienda/nosotros/">Sobre Nosotros</a>
 								</li>
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías
+									<a href="/Tienda/Producto/listar/" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías
 										<span class="caret"></span>
 									</a>
 									<ul class="dropdown-menu multi-column columns-3">
 										<div class="agile_inner_drop_nav_info">
 											<div class="col-sm-4 multi-gd-img">
 												<ul class="multi-column-dropdown">
+
+													<a href="/Tienda/Producto/listar/"> <span>Categorías</span></a>
+
 													{% for i in oCategorias %}
 														<li>
 															<a href="/Categoria/{{ i.id }}/">{{ i.nombreCategoria }}</a>
@@ -564,7 +567,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- footer categories -->
 				<div class="col-sm-5 address-right">
 					<div class="col-xs-6 footer-grids">
-						<h3>Categorias</h3>
+						<h3>Categorías</h3>
 						<ul>
 							{% for oCategoria in oCategorias %}
 							<li>
