@@ -5,49 +5,64 @@ from apps.models import *
 
 def pruebaTienda(request):
     oCategorias = Categoria.objects.all()
-    oProductos = Producto.objects.filter(categoria=2)[:3]
+    oProductos = Producto.objects.all().order_by('-id')[:3]
+    oProductosE = Producto.objects.all()
     template = loader.get_template('tienda/mostrarTienda.html')
-    context = {'oCategorias':oCategorias,'oProductos':oProductos}
+    context = {'oCategorias':oCategorias,'oProductos':oProductos, 'oProductosE':oProductosE}
     return HttpResponse(template.render(context, request))
 
 
 def mostrarContacto(request):
     template = loader.get_template('tienda/contacto.html')
-    context = {}
+    oCategorias = Categoria.objects.all()
+    context = {'oCategorias':oCategorias}
     return HttpResponse(template.render(context, request))
 
 def mostrarSobreNosotros(request):
     template = loader.get_template('tienda/sobreNosotros.html')
-    context = {}
+    oCategorias = Categoria.objects.all()
+    context = {'oCategorias':oCategorias}
     return HttpResponse(template.render(context, request))
 
 def mostrarTerminos(request):
     template = loader.get_template('tienda/terminos.html')
-    context = {}
+    oCategorias = Categoria.objects.all()
+    context = {'oCategorias':oCategorias}
     return HttpResponse(template.render(context, request))
 
 def mostrarPrivacidad(request):
     template = loader.get_template('tienda/privacidad.html')
-    context = {}
+    oCategorias = Categoria.objects.all()
+    context = {'oCategorias':oCategorias}
     return HttpResponse(template.render(context, request))
 
 def mostrarAyuda(request):
     template = loader.get_template('tienda/ayuda.html')
-    context = {}
+    oCategorias = Categoria.objects.all()
+    context = {'oCategorias':oCategorias}
     return HttpResponse(template.render(context, request))
 
 def detalleProductoTienda(request, id):
     oProducto = Producto.objects.get(id=id)
     template = loader.get_template('tienda/detalleProducto.html')
-    context = {'oProducto':oProducto}
+    oCategorias = Categoria.objects.all()
+    context = {'oProducto':oProducto,'oCategorias':oCategorias}
     return HttpResponse(template.render(context, request))
 
 def listarCarrito(request):
     template = loader.get_template('tienda/listarCarrito.html')
-    context = {}
+    oCategorias = Categoria.objects.all()
+    context = {'oCategorias':oCategorias}
     return HttpResponse(template.render(context, request))
 
 def mostrarPago(request):
     template = loader.get_template('tienda/pago.html')
-    context = {}
+    oCategorias = Categoria.objects.all()
+    context = {'oCategorias':oCategorias}
+    return HttpResponse(template.render(context, request))
+
+def listarProductoTienda(request):
+    oCategorias = Categoria.objects.all()
+    template = loader.get_template('tienda/listarProductos.html')
+    context = {'oCategorias':oCategorias}
     return HttpResponse(template.render(context, request))

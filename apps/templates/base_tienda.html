@@ -566,76 +566,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="col-xs-6 footer-grids">
 						<h3>Categorias</h3>
 						<ul>
+							{% for oCategoria in oCategorias %}
 							<li>
-								<a href="product.html">Grocery</a>
+								<a href="/Categoria/{{ oCategoria.id }}/">{{ oCategoria.nombreCategoria }}</a>
 							</li>
-							<li>
-								<a href="product.html">Fruits</a>
-							</li>
-							<li>
-								<a href="product.html">Soft Drinks</a>
-							</li>
-							<li>
-								<a href="product2.html">Dishwashers</a>
-							</li>
-							<li>
-								<a href="product.html">Biscuits & Cookies</a>
-							</li>
-							<li>
-								<a href="product2.html">Baby Diapers</a>
-							</li>
+							{% endfor %}
 						</ul>
 					</div>
-					<div class="col-xs-6 footer-grids agile-secomk">
-						<ul>
-							<li>
-								<a href="product.html">Snacks & Beverages</a>
-							</li>
-							<li>
-								<a href="product.html">Bread & Bakery</a>
-							</li>
-							<li>
-								<a href="product.html">Sweets</a>
-							</li>
-							<li>
-								<a href="product.html">Chocolates & Biscuits</a>
-							</li>
-							<li>
-								<a href="product2.html">Personal Care</a>
-							</li>
-							<li>
-								<a href="product.html">Dried Fruits & Nuts</a>
-							</li>
-						</ul>
-					</div>
+					<div class="col-xs-6 footer-grids">
+
+							<h3>Acceso rápido</h3>
+							<ul>
+								<li>
+									<a href="/Tienda/nosotros/">Sobre nosotros</a>
+								</li>
+								<li>
+									<a href="/Tienda/contacto/">Contáctenos</a>
+								</li>
+								<li>
+									<a href="/Tienda/ayuda/">Ayuda</a>
+								</li>
+								<!-- <li>
+									<a href="faqs.html">Faqs</a>
+								</li> -->
+								<li>
+									<a href="/Tienda/terminos/">Términos de uso</a>
+								</li>
+								<li>
+									<a href="/Tienda/privacidad/">Políticas de privacidad</a>
+								</li>
+							</ul>
+						</div>
 					<div class="clearfix"></div>
 				</div>
 				<!-- //footer categories -->
 				<!-- quick links -->
 				<div class="col-sm-5 address-right">
-					<div class="col-xs-6 footer-grids">
-						<h3>Acceso rápido</h3>
-						<ul>
-							<li>
-								<a href="/Tienda/nosotros/">Sobre nosotros</a>
-							</li>
-							<li>
-								<a href="/Tienda/contacto/">Contáctenos</a>
-							</li>
-							<li>
-								<a href="/Tienda/ayuda/">Ayuda</a>
-							</li>
-							<!-- <li>
-								<a href="faqs.html">Faqs</a>
-							</li> -->
-							<li>
-								<a href="/Tienda/terminos/">Términos de uso</a>
-							</li>
-							<li>
-								<a href="/Tienda/privacidad/">Políticas de privacidad</a>
-							</li>
-						</ul>
-					</div>
+
 					<div class="col-xs-6 footer-grids">
 						<h3>Mantengámosos en contacto</h3>
 						<ul>

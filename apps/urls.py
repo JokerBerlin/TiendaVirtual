@@ -22,5 +22,6 @@ urlpatterns = [
     path('Tienda/productoDetalle/<int:id>/', detalleProductoTienda),
     path('Tienda/carrito/listar/', listarCarrito),
     path('Tienda/pago/', mostrarPago),
+    path('Tienda/Producto/listar/', listarProductoTienda),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
