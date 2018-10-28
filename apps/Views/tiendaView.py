@@ -3,6 +3,9 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404
 
 from apps.models import *
 
+##paginacion
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 def pruebaTienda(request):
     oCategorias = Categoria.objects.all()
     oProductos = Producto.objects.all().order_by('-id')[:3]
@@ -64,13 +67,25 @@ def mostrarPago(request):
 def listarProductoTienda(request):
     oCategorias = Categoria.objects.all()
     oProductos = Producto.objects.all().order_by('-id')
-    print(oProductos)
-    producto=[]
-    for value in oProductos:
-        print(value.id)
-        if int(value.id) % 3 == 0:
-            producto.append(value.id)
-    print(producto)
+
+    #Paginación
+    paginator = Paginator(oProductos,9)
+
+    page = request.GET.get('page')
+    try:
+        productoPagina = paginator.page(page)
+    except PageNotAnInteger:
+        productoPagina = paginator.page(1)
+    except EmptyPage:
+        productoPagina = paginator.page(paginator.num_pages)
+
+    index = productoPagina.number - 1
+    max_index = len(paginator.page_range)
+    start_index = index - 5 if index >= 5 else 0
+    end_index = index + 5 if index <= max_index - 5 else max_index
+    page_range = paginator.page_range[start_index:end_index]
+
     template = loader.get_template('tienda/listarProductos.html')
-    context = {'oProductos':oProductos,'oCategorias':oCategorias,'producto':producto}
+    context = {'oProductos':productoPagina,'oCategorias':oCategorias,'page_range': page_range}
+
     return HttpResponse(template.render(context, request))
