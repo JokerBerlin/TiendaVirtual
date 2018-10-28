@@ -89,3 +89,29 @@ def listarProductoTienda(request):
     context = {'oProductos':productoPagina,'oCategorias':oCategorias,'page_range': page_range}
 
     return HttpResponse(template.render(context, request))
+
+def CategoriaProductoTienda(request, id):
+    oCategorias = Categoria.objects.all()
+    oProductos = Producto.objects.filter(categoria_id=id).order_by('-id')
+
+    #Paginación
+    paginator = Paginator(oProductos,9)
+
+    page = request.GET.get('page')
+    try:
+        productoPagina = paginator.page(page)
+    except PageNotAnInteger:
+        productoPagina = paginator.page(1)
+    except EmptyPage:
+        productoPagina = paginator.page(paginator.num_pages)
+
+    index = productoPagina.number - 1
+    max_index = len(paginator.page_range)
+    start_index = index - 5 if index >= 5 else 0
+    end_index = index + 5 if index <= max_index - 5 else max_index
+    page_range = paginator.page_range[start_index:end_index]
+
+    template = loader.get_template('tienda/listarProductos.html')
+    context = {'oProductos':productoPagina,'oCategorias':oCategorias,'page_range': page_range}
+
+    return HttpResponse(template.render(context, request))
