@@ -23,6 +23,6 @@ urlpatterns = [
     path('Tienda/carrito/listar/', listarCarrito),
     path('Tienda/pago/', mostrarPago),
     path('Tienda/Producto/listar/', listarProductoTienda),
-    path('Categoria/<int:id>/', CategoriaProductoTienda),
+    path('Tienda/CategoriaProducto/<int:id>/', CategoriaProductoTienda),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
