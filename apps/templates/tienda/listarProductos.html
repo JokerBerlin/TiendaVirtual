@@ -79,19 +79,19 @@ Productos
     											<a href="/Tienda/productoDetalle/{{ oProducto.id }}/" class="link-product-add-cart">Detalles</a>
     										</div>
     									</div>
-    									<span class="product-new-top">New</span>
+    									<span class="product-new-top">Nuevo</span>
     								</div>
     								<div class="item-info-product ">
     									<h4>
-    										<a href="single.html">Zeeba Basmati Rice</a>
+    										<a href="single.html">{{ oProducto.nombreProducto }}</a>
     									</h4>
     									<div class="info-product-price">
-    										<span class="item_price">$950.00</span>
-    										<del>$1020.00</del>
+    										<span class="item_price">S/.{{ oProducto.precioOfertaProducto }}</span>
+    										<del>S/.{{ oProducto.precioProducto }}</del>
     									</div>
     									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
     											<fieldset>
-    												<input type="submit" name="submit" value="Add to cart" class="button" />
+    												<input type="submit" name="submit" value="Añadir al carro" class="button" />
     											</fieldset>
                           <br>
 
