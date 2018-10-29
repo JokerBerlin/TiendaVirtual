@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.contrib.auth.models import User
+from datetime import datetime
 # Create your models here.
 class Categoria(models.Model):
     nombreCategoria = models.CharField(max_length=20)
@@ -32,3 +33,14 @@ class Producto(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     def __str__(self):
         return '%s' % self.nombreProducto
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    activation_key = models.CharField(max_length=40, blank=True)
+    key_expires = models.DateTimeField(default=datetime.today())
+
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        verbose_name_plural=u'Perfiles de Usuario'

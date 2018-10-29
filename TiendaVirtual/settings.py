@@ -134,3 +134,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media')
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'trazto0z@gmail.com'
+EMAIL_HOST_PASSWORD = '(xdxdios)'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'trazto0z@gmail.com'

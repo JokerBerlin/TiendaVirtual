@@ -1,0 +1,59 @@
+{% extends "base_tienda.html" %}
+{% block imports %}
+{% endblock %}
+{% block title %}
+Registrar Usuario
+{% endblock %}
+
+{% block content %}
+<!-- banner-2 -->
+	<div class="page-head_agile_info_w3l">
+
+	</div>
+	<!-- //banner-2 -->
+	<!-- page -->
+  <div class="contact agileits">
+    <div class="contact-agileinfo">
+    	<div class="contact-form wthree">
+        <form action="#" method="post">
+          {% csrf_token %}
+          <div class="">
+            {{ form.username.errors }}
+            {{ form.username.label }}
+            {{ form.username }}
+          </div>
+          <div class="">
+            {{ form.first_name.errors }}
+            {{ form.first_name.label }}
+            {{ form.first_name }}
+          </div>
+          <div class="">
+            {{ form.last_name.errors }}
+            {{ form.last_name.label }}
+            {{ form.last_name }}
+          </div>
+          <div class="">
+            {{ form.email.errors }}
+            {{ form.email.label }}
+            {{ form.email }}
+          </div>
+          <div class="">
+            {{ form.password1.errors }}
+            {{ form.password1.label }}
+            {{ form.password1 }}
+          </div>
+          <div class="">
+            {{ form.password2.errors }}
+            {{ form.password2.label }}
+            {{ form.password2 }}
+          </div>
+          <div class="">
+            <input type="submit" value="Registrar" >
+          </div>
+        </form>
+  		</div>
+  	</div>
+  </div>
+
+
+{% endblock %}
