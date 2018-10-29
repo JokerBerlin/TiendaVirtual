@@ -6,14 +6,34 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
+        password = forms.CharField(widget=forms.PasswordInput)
+        password2 = forms.CharField(widget=forms.PasswordInput)
         fields = ('username','first_name', 'last_name', 'email',  'password1', 'password2')
 
-    email = forms.EmailField(required=True, label = 'Correo Electrónico', widget=forms.TextInput(attrs={'placeholder': 'Correo Electrónico',}))
-    first_name = forms.CharField(required=True, label = 'Nombres', widget=forms.TextInput(attrs={'placeholder': 'Nombre',}))
-    last_name = forms.CharField(required=True, label = 'Apellidos', widget=forms.TextInput(attrs={'placeholder': 'Apellidos',}))
-    username = forms.CharField(required=True,  label = 'Nombre de usuario', widget=forms.TextInput(attrs={'placeholder': 'Usuario',}))
-    password1 = forms.CharField(required=True,  widget=forms.TextInput())
-    password2 = forms.CharField(required=True,  widget=forms.TextInput())
+    labels = {
+        'username':'Nombre de usuario',
+        'first_name':'Nombres',
+        'last_name':'Apellidos',
+        'email':'Correo Electrónico',
+        'password1':'Contraseña',
+        'password2':'Repita Contraseña',
+    }
+
+    widgets = {
+        'username': forms.TextInput(attrs={'placeholder': 'Ingrese su usuario...','class': 'form-control',}),
+        'email': forms.EmailInput(attrs={'placeholder': 'Ingrese su correo electrónico...','type':'email','class': 'form-control',}),
+        'first_name': forms.TextInput(attrs={'placeholder': 'Ingrese sus nombres...','class': 'form-control',}),
+        'last_name': forms.TextInput(attrs={'placeholder': 'Ingrese sus apellidos...','class': 'form-control',}),
+        'password1': forms.TextInput(attrs={'class': 'form-control',}),
+
+    }
+
+    # email = forms.EmailField(required=True, label = 'Correo Electrónico', widget=forms.TextInput(attrs={'placeholder': 'Correo Electrónico',}))
+    # first_name = forms.CharField(required=True, label = 'Nombres', widget=forms.TextInput(attrs={'placeholder': 'Nombre',}))
+    # last_name = forms.CharField(required=True, label = 'Apellidos', widget=forms.TextInput(attrs={'placeholder': 'Apellidos',}))
+    # username = forms.CharField(required=True,  label = 'Nombre de usuario', widget=forms.TextInput(attrs={'placeholder': 'Usuario',}))
+    # password1 = forms.CharField(required=True,  widget=forms.TextInput(attrs={'type': 'password',}))
+    # password2 = forms.CharField(required=True,  widget=forms.TextInput())
 
 
 
