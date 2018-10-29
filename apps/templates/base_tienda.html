@@ -189,14 +189,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li>
 						<span class="fa fa-phone" aria-hidden="true"></span> 982713310
 					</li>
-					<li>
-						<a href="#" data-toggle="modal" data-target="#myModal1">
-							<span class="fa fa-unlock-alt" aria-hidden="true"></span> Acceder </a>
-					</li>
-					<li>
-						<a href="/Usuario/registrar/">
-							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Regístrate </a>
-					</li>
+					{% if user.is_authenticated %}
+					  <li>Welcome, {{ user.username }}</li>
+					{% else %}
+						<li>
+							<a href="#" data-toggle="modal" data-target="#myModal1">
+								<span class="fa fa-unlock-alt" aria-hidden="true"></span> Acceder </a>
+						</li>
+						<li>
+							<a href="/Usuario/registrar/">
+								<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Regístrate </a>
+						</li>
+					{% endif %}
+
 				</ul>
 				<!-- //header lists -->
 				<!-- search -->
@@ -282,14 +287,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a href="#" data-toggle="modal" data-target="#myModal2">
 								Regístrate</a>
 						</p>
-						<form action="#" method="post">
+						<form method="post" class="form-horizontal m-t-20" id="loginform" action="./?next={{ redirect_to }}">
+							{% csrf_token %}
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="User Name" name="Name" required="">
+								<input type="text" placeholder="User Name" name="username" required="">
 							</div>
 							<div class="styled-input">
 								<input type="password" placeholder="Password" name="password" required="">
 							</div>
-							<input type="submit" value="Iniciar Sesión">
+							<button class="btn btn-success float-right" type="submit" value="Ingresar">Login</button>
 						</form>
 						<div class="clearfix"></div>
 					</div>

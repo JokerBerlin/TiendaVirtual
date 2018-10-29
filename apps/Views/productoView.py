@@ -13,6 +13,7 @@ from django.conf import settings
 
 @login_required
 def registrarProducto(request):
+    if user.is_adm
     if request.method == 'POST':
         #Datos = request.POST
         form = ProductoForm(request.POST, request.FILES)

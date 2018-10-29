@@ -26,6 +26,7 @@ urlpatterns = [
     path('Tienda/pago/', mostrarPago),
     path('Tienda/Producto/listar/', listarProductoTienda),
     path('Tienda/CategoriaProducto/<int:id>/', CategoriaProductoTienda),
+    path('Tienda/login/', LoginTienda),
     #usuario
     path('Usuario/registrar/',RegistrarUsuario.as_view(), name="registrar_usuario"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

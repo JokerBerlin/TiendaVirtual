@@ -13,6 +13,30 @@ from django.conf import settings
 
 def Login(request):
     next = request.GET.get('next', '/home/')
+    nextTienda = request.GET.get('nextTienda','/Tienda/inicio/')
+    if request.method == "POST":
+
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        print (user)
+
+        if user is not None:
+
+            if user.is_staff or user.is_superuser:
+                login(request, user)
+                return HttpResponseRedirect('/home/')
+            elif user.is_active:
+                return HttpResponseRedirect(settings.LOGIN_URL)
+            else:
+                return HttpResponse("Inactive user.")
+        else:
+            return HttpResponseRedirect(settings.LOGIN_URL)
+
+    return render(request, "login/login.html", {'redirect_to': next})
+
+def LoginTienda(request):
+    next = request.GET.get('next','/Tienda/inicio/')
     if request.method == "POST":
 
         username = request.POST['username']
@@ -25,14 +49,12 @@ def Login(request):
             if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect(next)
-            elif not user.is_staff or user.is_superuser:
-                return HttpResponseRedirect(settings.LOGIN_URL)
             else:
                 return HttpResponse("Inactive user.")
         else:
             return HttpResponseRedirect(settings.LOGIN_URL)
 
-    return render(request, "login/login.html", {'redirect_to': next})
+    return render(request, "tienda/mostrarTienda.html", {'redirect_to': next})
 
 def Logout(request):
     logout(request)
