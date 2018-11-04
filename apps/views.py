@@ -26,8 +26,9 @@ def Login(request):
             if user.is_staff or user.is_superuser:
                 login(request, user)
                 return HttpResponseRedirect('/home/')
-            elif user.is_active:
-                return HttpResponseRedirect(settings.LOGIN_URL)
+            # elif user.is_active:
+            #     login(request, user)
+            #     return HttpResponseRedirect('/Tienda/login/')
             else:
                 return HttpResponse("Inactive user.")
         else:
@@ -36,7 +37,7 @@ def Login(request):
     return render(request, "login/login.html", {'redirect_to': next})
 
 def LoginTienda(request):
-    next = request.GET.get('next','/Tienda/inicio/')
+    next = request.GET.get('next','/Tienda/login/')
     if request.method == "POST":
 
         username = request.POST['username']
@@ -52,7 +53,7 @@ def LoginTienda(request):
             else:
                 return HttpResponse("Inactive user.")
         else:
-            return HttpResponseRedirect(settings.LOGIN_URL)
+            return HttpResponseRedirect(settings.LOGIN_URL2)
 
     return render(request, "tienda/mostrarTienda.html", {'redirect_to': next})
 

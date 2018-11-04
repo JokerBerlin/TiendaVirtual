@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 ]
 
 LOGIN_URL = "/login/"
+LOGIN_URL2 = "/Tienda/login/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

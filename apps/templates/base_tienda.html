@@ -190,7 +190,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<span class="fa fa-phone" aria-hidden="true"></span> 982713310
 					</li>
 					{% if user.is_authenticated %}
-					  <li>Welcome, {{ user.username }}</li>
+					  <li>Welcome, {{ user.first_name }} {{ user.last_name }}</li>
 					{% else %}
 						<li>
 							<a href="#" data-toggle="modal" data-target="#myModal1">
