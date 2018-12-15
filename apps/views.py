@@ -37,6 +37,10 @@ def Login(request):
     return render(request, "login/login.html", {'redirect_to': next})
 
 def LoginTienda(request):
+    oCategorias = Categoria.objects.all()
+    oProductos = Producto.objects.all().order_by('-id')[:3]
+    oProductosE = Producto.objects.all()
+
     next = request.GET.get('next','/Tienda/login/')
     if request.method == "POST":
 
@@ -55,7 +59,7 @@ def LoginTienda(request):
         else:
             return HttpResponseRedirect(settings.LOGIN_URL2)
 
-    return render(request, "tienda/mostrarTienda.html", {'redirect_to': next})
+    return render(request, "tienda/mostrarTienda.html", {'redirect_to': next,'oCategorias':oCategorias,'oProductos':oProductos, 'oProductosE':oProductosE})
 
 def Logout(request):
     logout(request)

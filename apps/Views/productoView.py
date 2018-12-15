@@ -5,13 +5,15 @@ from django.template import loader
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.conf import settings
 
+
 @login_required
+@permission_required('is_admin')
 def registrarProducto(request):
     #if user.is_admin:
     if request.method == 'POST':
