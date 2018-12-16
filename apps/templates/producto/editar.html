@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block imports %}
+
+{% endblock %}
+
+{% block title %}
+Registrar Nuevo Producto
+{% endblock %}
+
+{% block content %}
+<div class="card">
+      <div class="card-body wizard-content">
+                  <h3 class="card-title">Registrar Producto</h3>
+                  <div class="steps clearfix">
+                    <div class="steps clearfix">
+
+                    {% if form.errors %}
+                      <p style="color: red;">Por favor corrige lo siguiente:</p>
+                    {% endif %}
+                      <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                          <div class="col-lg-4">
+                            {{ form.nombreProducto.errors }}
+                            {{ form.nombreProducto.label_tag }}
+                            {{ form.nombreProducto }}
+                          </div>
+                          <div class="col-lg-4">
+                            {{ form.precioProducto.errors }}
+                            {{ form.precioProducto.label_tag }}
+                            {{ form.precioProducto }}
+                          </div>
+                          <div class="col-lg-4">
+                            {{ form.precioOfertaProducto.errors }}
+                            {{ form.precioOfertaProducto.label_tag }}
+                            {{ form.precioOfertaProducto }}
+                          </div>
+                        </div>
+                        <!-- segunda fila -->
+                        <div class="row mb-3">
+                          <div class="col-lg-4">
+                            {{ form.tallaProducto.errors }}
+                            {{ form.tallaProducto.label_tag }}
+                            {{ form.tallaProducto }}
+                          </div>
+                          <div class="col-lg-4">
+                            {{ form.colorProducto.errors }}
+                            {{ form.colorProducto.label_tag }}
+                            {{ form.colorProducto }}
+                          </div>
+                          <div class="col-lg-4">
+                            {{ form.tipoProducto.errors }}
+                            {{ form.tipoProducto.label_tag }}
+                            {{ form.tipoProducto }}
+                          </div>
+                        </div>
+                        <!-- tercera fila -->
+                        <div class="row mb-3">
+                          <div class="col-lg-4">
+                            {{ form.marcaProducto.errors }}
+                            {{ form.marcaProducto.label_tag }}
+                            {{ form.marcaProducto }}
+                          </div>
+
+                          <div class="col-lg-4">
+                            {{ form.imagenProducto.errors }}
+                            {{ form.imagenProducto.label_tag }}
+                            {{ form.imagenProducto }}
+                          </div>
+                          <div class="col-lg-4">
+                            {{ form.descripcionProducto.errors }}
+                            {{ form.descripcionProducto.label_tag }}
+                            {{ form.descripcionProducto }}
+                          </div>
+                        </div>
+                        <!-- cuarta fila -->
+                        <div class="row mb-3">
+
+                          <div class="col-lg-4">
+                            {{ form.categoria.errors }}
+                            {{ form.categoria.label_tag }}
+                            {{ form.categoria }}
+                          </div>
+                        </div>
+
+
+                            <button type="submit" class="btn btn-success" name="enviar">Registrar</button>
+
+                      </form>
+                 </div>
+                </div>
+
+            </div>
+        </div>
+
+
+{% endblock %}

@@ -59,8 +59,26 @@ def buscarProductoAjax(request):
                     jsonProducto = {}
                     jsonProducto["id"] = oProducto.id
                     jsonProducto["nombreProducto"] = oProducto.nombreProducto
-                jsonfinal["productos"].append(jsonProducto)    
+                jsonfinal["productos"].append(jsonProducto)
                 print("JSONFINAL", jsonfinal)
                 return HttpResponse(json.dumps(jsonfinal), content_type="application/json")
             except Exception as e:
                 return HttpResponse(json.dumps({'exito':0}), content_type="application/json")
+
+def editarProducto(request,producto_id):
+    oProducto = Producto.objects.get(id = producto_id)
+    if request.method == 'POST':
+        Datos = request.POST
+        form = ProductoForm(request.POST or None, request.FILES, instance=oProducto)
+        if form.is_valid():
+            edit_prod=form.save(commit=False)
+            form.save_m2m()
+            edit_prod.status=True
+            edit_prod.save()
+            return redirect('/Producto/listar/')
+
+        else:
+            return render(request, '/Producto/error.html')
+    else:
+        form = ProductoForm(request.POST or None, instance=oProducto)
+        return render(request, 'Producto/editar.html', {'form': form, 'oProducto':oProducto})
