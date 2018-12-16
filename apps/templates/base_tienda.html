@@ -41,53 +41,93 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<!-- popup modal (for signin & signup)-->
 	<script src="/static/tienda/js/jquery.magnific-popup.js"></script>
+
 	<script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
 
-		});
+
+	$(document).ready(function(){
+	 $( "#search_product" ).autocomplete({
+		source: function (request, response) {
+
+			 var datos = {nombreProducto: $("#search_product").val()};
+			 console.log(datos);
+			 var sendData = JSON.stringify(datos);
+			 $.ajax({
+						type: "POST",
+						dataType: "json",
+						url: "/Producto/buscarajax/",
+						data: sendData,
+						contentType: "application/json; charset=utf-8",
+						async: false,
+						cache: false,
+						CrossDomain: true,
+
+						success: function (jsonfinal) {
+						var ListasProductos = jsonfinal['productos'];
+						console.log(ListasProductos);
+						response($.map(ListasProductos, function (item) {
+								console.log(item.id);
+								return {
+										label: item.nombreProducto,
+										id: item.id
+										};
+
+						}));
+
+							}
+						});
+					},
+						minLength: 2,
+						select: function (event, ui) {
+								console.log(ui.item.Id);
+								document.location.href="/Tienda/productoDetalle/"+ui.item.id+"/";
+						}
+
+				});
+
+				 });
+
+
+		// $(document).ready(function () {
+		// 	$('.popup-with-zoom-anim').magnificPopup({
+		// 		type: 'inline',
+		// 		fixedContentPos: false,
+		// 		fixedBgPos: true,
+		// 		overflowY: 'auto',
+		// 		closeBtnInside: true,
+		// 		preloader: false,
+		// 		midClick: true,
+		// 		removalDelay: 300,
+		// 		mainClass: 'my-mfp-zoom-in'
+		// 	});
+		//
+		// });
 	</script>
-	<!-- Large modal -->
-	<!-- <script>
-		$('#').modal('show');
-	</script> -->
-	<!-- //popup modal (for signin & signup)-->
+	<style>
+		ul.ui-autocomplete {
+		  z-index: 1100;
+		}
+		#content{
+		  position: absolute;
+		  min-height: 50%;
+		  width: 80%;
+		  top: 20%;
+		  left: 5%;
+		}
 
-	<!-- cart-js
-	<script src="/static/tienda/js/minicart.js"></script>
-	<script>
-		paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
+		.selected{
+		  cursor: pointer;
+		}
+		.selected:hover{
+		  background-color: #0585C0;
+		  color: white;
+		}
+		.seleccionada{
+		  background-color: #0585C0;
+		  color: white;
+		}
+		</style>
 
-		paypalm.minicartk.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
-
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
-
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
-	</script>
-	 //cart-js -->
-
-	<!-- password-script -->
 	<script>
 		window.onload = function () {
 			document.getElementById("password1").onchange = validatePassword;
@@ -151,6 +191,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- //js-files -->
 
 
+
+	<script type="text/javascript">
+	</script>
+
 	{% block imports %}
 	{% endblock %}
 </head>
@@ -206,11 +250,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- //header lists -->
 				<!-- search -->
 				<div class="agileits_search">
-					<form action="#" method="post">
-						<input name="Search" type="search" placeholder="Buscas un producto?" required="">
-						<button type="submit" class="btn btn-default" aria-label="Left Align">
-							<span class="fa fa-search" aria-hidden="true"> </span>
-						</button>
+					<form action="/Producto/nuevo/" method="post">
+
+							<div class="input-group">
+								<input id="search_product" name="Search" type="text" class="form-control" placeholder="Buscas un producto?">
+									<span class="input-group-addon">
+							        <a id="btn-buscar" class="glyphicon glyphicon-search" role="button" type="submit" ></a>
+							    </span>
+							</div>
+
+
 					</form>
 				</div>
 				<!-- //search -->
