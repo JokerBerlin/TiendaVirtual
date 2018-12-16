@@ -82,3 +82,9 @@ def editarProducto(request,producto_id):
     else:
         form = ProductoForm(request.POST or None, instance=oProducto)
         return render(request, 'Producto/editar.html', {'form': form, 'oProducto':oProducto})
+
+def detalleProducto(request,producto_id):
+    oProducto = Producto.objects.get(id=producto_id)
+    template = loader.get_template('producto/detalle.html')
+    context = {'oProducto':oProducto,}
+    return HttpResponse(template.render(context, request))

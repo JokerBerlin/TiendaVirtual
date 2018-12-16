@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block imports %}
+
+{% endblock %}
+
+{% block title %}
+Detalle Producto
+{% endblock %}
+
+{% block content %}
+<div class="card">
+      <div class="card-body wizard-content">
+                  <h3 class="card-title">Detalle de Producto {{oProducto.nombreProducto}} </h3>
+                  <div class="steps clearfix">
+                    <div class="steps clearfix">
+
+                      <table id="tCamiones"  class="table">
+					<tr>
+						<td>Imagen: </td>
+						<td><img src="/media/{{oProducto.imagenProducto}}" height="100" width="100" alt="" /></td>
+
+					</tr>
+					<tr>
+						<td>Nombre: </td>
+						<td>{{ oProducto.nombreProducto }}</td>
+					</tr>
+					<tr>
+						<td>Precio Normal - Precio Oferta: </td>
+						<td>{{ oProducto.precioProducto}} - {{oProducto.precioOfertaProducto }}</td>
+					</tr>
+					<tr>
+						<td>Talla producto: </td>
+						<td>{{ oProducto.tallaProducto }}</td>
+					</tr>
+					<tr>
+						<td>Color producto: </td>
+						<td>{{ oProducto.colorProducto }}</td>
+					</tr>
+          <tr>
+						<td>Tipo producto: </td>
+						<td>{{ oProducto.tipoProducto }}</td>
+					</tr>
+          <tr>
+						<td>Descripción producto: </td>
+						<td>{{ oProducto.descripcionProducto }}</td>
+					</tr>
+          <tr>
+						<td>Categoría producto: </td>
+						<td>{{ oProducto.categoria.nombreCategoria }}</td>
+					</tr>
+				</table>
+
+
+
+                            <a href="/Producto/editar/{{oProducto.id}}/"><button type="button" class="btn btn-primary">Editar</button></a>
+
+                 </div>
+                </div>
+
+            </div>
+        </div>
+
+
+{% endblock %}

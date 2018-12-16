@@ -15,6 +15,7 @@ urlpatterns = [
     path('home/', mostrarInicio),
     path('Producto/registrar/', registrarProducto, name = "crear_producto"),
     path('Producto/listar/', listarProducto, name = "listar_producto"),
+    path('Producto/detalle/<int:producto_id>/', detalleProducto, name = "detalle_producto"),
     path('Producto/editar/<int:producto_id>/', editarProducto, name = "editar_producto"),
     path('Producto/buscarajax/', buscarProductoAjax, name = "buscar_producto_ajax"),
 
