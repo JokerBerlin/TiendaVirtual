@@ -26,10 +26,8 @@ class Producto(models.Model):
     colorProducto = models.CharField(max_length=20)
     tipoProducto = models.CharField(max_length=20)
     marcaProducto = models.CharField(max_length=50)
-    stockProducto = models.IntegerField()
     imagenProducto = models.ImageField()
     descripcionProducto = models.CharField(max_length=200)
-    proveedor = models.ForeignKey(Proveedor, on_delete=models.PROTECT)
     categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     def __str__(self):
         return '%s' % self.nombreProducto
@@ -44,3 +42,16 @@ class UserProfile(models.Model):
 
     class Meta:
         verbose_name_plural=u'Perfiles de Usuario'
+
+
+class Lote(models.Model):
+    fecha = models.DateTimeField(auto_now_add=True, blank=True)
+    tipoComprobante = models.CharField(max_length=7)
+    nroComprobante = models.CharField(max_length=20)
+    proveedor = models.ForeignKey('Proveedor', on_delete=models.CASCADE)  # Field name made lowercase.
+    
+class Producto_lote(models.Model):
+    cantidad = models.FloatField()
+    cantidadinicial = models.FloatField()
+    producto = models.ForeignKey(Producto, on_delete=models.PROTECT)  # Field name made lowercase.
+    lote = models.ForeignKey(Lote, on_delete=models.CASCADE)  # Field name made lowercase.
