@@ -49,9 +49,9 @@ class Lote(models.Model):
     tipoComprobante = models.CharField(max_length=7)
     nroComprobante = models.CharField(max_length=20)
     proveedor = models.ForeignKey('Proveedor', on_delete=models.CASCADE)  # Field name made lowercase.
-    
+
 class Producto_lote(models.Model):
-    cantidad = models.FloatField()
-    cantidadinicial = models.FloatField()
+    cantidad = models.IntegerField()
+    cantidadinicial = models.IntegerField()
     producto = models.ForeignKey(Producto, on_delete=models.PROTECT)  # Field name made lowercase.
     lote = models.ForeignKey(Lote, on_delete=models.CASCADE)  # Field name made lowercase.
