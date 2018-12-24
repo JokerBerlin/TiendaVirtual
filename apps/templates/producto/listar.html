@@ -27,7 +27,13 @@ Listar Productos
                                             <td>{{ producto.precioProducto }}</td>
                                             <td><img src="/media/{{producto.imagenProducto}}" height="100" width="100" alt="" /></td>
                                             <td class="sorting_1">{{ producto.tallaProducto }}</td>
-                                            <td>{{ producto.stockProducto }}</td>
+                                            <td>
+                                              {% for precio in precios  %}
+                                                {% if producto.id == precio.id  %}
+                                                  {{precio.cantidad}}
+                                                {% endif %}
+                                              {% endfor %}
+                                            </td>
                                             <td>{{ producto.categoria.nombreCategoria }}</td>
                                             <td>
                                               <a href="/Producto/detalle/{{producto.id}}/"><button type="button" class="btn btn-info">Ver</button> </a>

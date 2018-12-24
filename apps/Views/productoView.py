@@ -36,10 +36,26 @@ def registrarProducto(request):
 @login_required
 @permission_required('is_admin')
 def listarProducto(request):
-    oProducto = Producto.objects.all()
-    print(oProducto)
+    oProductos = Producto.objects.all()
+    precios=[]
+    #for oProducto in oProductos:
+    for oProducto in oProductos:
+        nuevo={}
+        try:
+            oUltimoP=Producto_lote.objects.filter(producto_id=oProducto).latest('id')
+            print(oUltimoP)
+            nuevo['id'] = oProducto.id
+            nuevo['cantidad'] = oUltimoP.cantidad
+        except Exception as e:
+            print(e)
+            nuevo['id'] = oProducto.id
+            nuevo['cantidad'] = 0
+        precios.append(nuevo)
+    #nuevo={}
+    print(precios)
+
     template = loader.get_template('producto/listar.html')
-    context = {'oProducto':oProducto,}
+    context = {'oProducto':oProductos,'precios':precios,}
     return HttpResponse(template.render(context, request))
 
 
