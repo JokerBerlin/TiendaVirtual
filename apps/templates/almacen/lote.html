@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block imports %}
+{% endblock %}
+
+
+
+{% block title %}
+Editar Producto
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script src="/static/dist/js/crearLote.js"></script>
+<div class="card">
+      <div class="card-body wizard-content">
+                  <h3 class="card-title">Editar Producto {{oProducto.nombre}} </h3>
+                  <div class="steps clearfix">
+                    <div class="steps clearfix">
+
+                    {% if form.errors %}
+                      <p style="color: red;">Por favor corrige lo siguiente:</p>
+                    {% endif %}
+                        <div class="row mb-3">
+                          <div class="col-lg-4">
+                            <label for="id_nombre">Proveedor:</label>
+                            <a data-target="#myModal" role="button" id="nuevoProveedor" data-toggle="modal" style="color:green"><span class="fa fa-plus fa-1x"></span></a>
+                            <input type="text" id="inpt-proveedor" placeholder="Número Documento De Proveedor..." name="inpt-proveedor" class="form-control">
+                          </div>
+                          <div class="col-lg-4">
+                            <label for="id_tipoC">Tipo de comprobante:</label>
+                            <select class="form-control" name="" id="id_tipoComprobante">
+                              <option value="0">Boleta</option>
+                              <option value="1">Factura</option>
+                            </select>
+                          </div>
+                          <div class="col-lg-4">
+                            <label for="id_numC">Número de comprobante:</label>
+                            <input type="text" class="form-control" id="id_numeroComprobante" name="" value="">
+                          </div>
+                        </div>
+                        <!-- segunda fila -->
+                        <div class="row mb-3">
+                          <div class="col-lg-4">
+                            <label for="id_nombrePro">Producto:</label>
+                            <input type="text" id="search_product" class="form-control" name="" value="">
+                          </div>
+                          <div class="col-lg-4">
+                            <label for="id_nomCant">Cantidad:</label>
+                            <input type="number" id="cantidad" class="form-control" name="" value="">
+                          </div>
+                        </div>
+                        <!-- tercera fila -->
+
+                            <button class="btn btn-success" name="enviar">Registrar</button>
+
+
+                 </div>
+                </div>
+
+            </div>
+        </div>
+
+
+{% endblock %}

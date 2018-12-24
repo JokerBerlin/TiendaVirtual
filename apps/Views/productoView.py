@@ -34,6 +34,7 @@ def registrarProducto(request):
     return HttpResponse(template.render(context, request))
 
 @login_required
+@permission_required('is_admin')
 def listarProducto(request):
     oProducto = Producto.objects.all()
     print(oProducto)
@@ -65,6 +66,8 @@ def buscarProductoAjax(request):
             except Exception as e:
                 return HttpResponse(json.dumps({'exito':0}), content_type="application/json")
 
+@login_required
+@permission_required('is_admin')
 def editarProducto(request,producto_id):
     oProducto = Producto.objects.get(id = producto_id)
     if request.method == 'POST':
@@ -87,4 +90,9 @@ def detalleProducto(request,producto_id):
     oProducto = Producto.objects.get(id=producto_id)
     template = loader.get_template('producto/detalle.html')
     context = {'oProducto':oProducto,}
+    return HttpResponse(template.render(context, request))
+
+def registrarLote(request):
+    template = loader.get_template('almacen/lote.html')
+    context = {}
     return HttpResponse(template.render(context, request))

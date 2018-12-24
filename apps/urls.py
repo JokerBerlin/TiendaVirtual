@@ -3,6 +3,7 @@ from apps.views import *
 from apps.Views.productoView import *
 from apps.Views.tiendaView import *
 from apps.Views.usuarioView import *
+from apps.Views.proveedorView import *
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -18,6 +19,9 @@ urlpatterns = [
     path('Producto/detalle/<int:producto_id>/', detalleProducto, name = "detalle_producto"),
     path('Producto/editar/<int:producto_id>/', editarProducto, name = "editar_producto"),
     path('Producto/buscarajax/', buscarProductoAjax, name = "buscar_producto_ajax"),
+    path('Lote/registrar/',registrarLote,name = "registrar_lote"),
+
+    path('Proveedor/buscarajax/', buscarProveedorAjax, name = "buscar_proveedor_ajax"),
 
 
     path('Tienda/inicio/', pruebaTienda,name="mostrar_inicio"),
