@@ -56,7 +56,7 @@ Listar Lote
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="eliminar" type="button" class="btn btn-primary" onclick="">Eliminar</button>
+        <button id="eliminar" type="button" class="btn btn-danger" onclick="">Eliminar</button>
       </div>
     </div>
   </div>
@@ -103,7 +103,7 @@ Listar Lote
                                             <td>
                                               <a href="/Lote/detalle/{{lote.id}}/"><button type="button" class="btn btn-info">Ver</button> </a>
                                               <a href="/Lote/editar/{{lote.id}}/"><button type="button" class="btn btn-primary">Editar</button></a>
-                                              <a data-target="#myModal" role="button" class="btn btn-danger" data-toggle="modal"><button type="button" class="btn btn-danger" id="{{ oCliente.id }}" onclick="selPersona('{{lote.id}}','{{lote.proveedor.nombreProveedor}}');">Eliminar</button></a>
+                                              <a data-target="#myModal" role="button" data-toggle="modal"><button type="button" class="btn btn-danger" id="{{ oCliente.id }}" onclick="selPersona('{{lote.id}}','{{lote.proveedor.nombreProveedor}}');">Eliminar</button></a>
                                             </td>
                                         </tr>
                                     {% endfor %}
