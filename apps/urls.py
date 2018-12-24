@@ -4,6 +4,7 @@ from apps.Views.productoView import *
 from apps.Views.tiendaView import *
 from apps.Views.usuarioView import *
 from apps.Views.proveedorView import *
+from apps.Views.loteView import *
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -20,6 +21,8 @@ urlpatterns = [
     path('Producto/editar/<int:producto_id>/', editarProducto, name = "editar_producto"),
     path('Producto/buscarajax/', buscarProductoAjax, name = "buscar_producto_ajax"),
     path('Lote/registrar/',registrarLote,name = "registrar_lote"),
+
+    path('Lote/insertar/',registrarLoteAjax,name = "registrar_lote_ajax"),
 
     path('Proveedor/buscarajax/', buscarProveedorAjax, name = "buscar_proveedor_ajax"),
 
