@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response, redirect, get_object_or
 from apps.models import *
 from apps.formularios.productoForm import *
 from django.template import loader
-from django.http import HttpResponseRedirect, HttpResponse, Http404
+from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
@@ -81,3 +81,14 @@ def registrarLoteAjax(request):
     else:
         context ={}
         return render(request, 'almacen/lote.html', context)
+
+def eliminarLoteAjax(request):
+    pk = request.POST.get('identificador_id')
+    oLote = Lote.objects.get(id=pk)
+    oLoteProductos = Producto_lote.objects.filter(lote_id=oLote.id)
+    for oLoteProducto in oLoteProductos:
+        oLoteP = Producto_lote.objects.get(id=oLoteProducto.id)
+        oLoteP.delete()
+    oLote.delete()
+    response = {}
+    return JsonResponse(response)
