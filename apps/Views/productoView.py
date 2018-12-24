@@ -102,13 +102,10 @@ def editarProducto(request,producto_id):
         form = ProductoForm(request.POST or None, instance=oProducto)
         return render(request, 'Producto/editar.html', {'form': form, 'oProducto':oProducto})
 
+@login_required
+@permission_required('is_admin')
 def detalleProducto(request,producto_id):
     oProducto = Producto.objects.get(id=producto_id)
     template = loader.get_template('producto/detalle.html')
     context = {'oProducto':oProducto,}
-    return HttpResponse(template.render(context, request))
-
-def registrarLote(request):
-    template = loader.get_template('almacen/lote.html')
-    context = {}
     return HttpResponse(template.render(context, request))

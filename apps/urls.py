@@ -25,6 +25,7 @@ urlpatterns = [
     path('Lote/insertar/',registrarLoteAjax,name = "registrar_lote_ajax"),
     path('Lote/listar/',listarLote,name = "listar_lote"),
     path('Lote/eliminar/',eliminarLoteAjax,name = "eliminar_lote_ajax"),
+    path('Lote/detalle/<int:lote_id>/', detalleLote, name = "detalle_lote"),
 
     path('Proveedor/buscarajax/', buscarProveedorAjax, name = "buscar_proveedor_ajax"),
 

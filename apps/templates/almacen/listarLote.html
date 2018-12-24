@@ -101,8 +101,8 @@ Listar Lote
                                               {% endfor %}
                                             </td>
                                             <td>
-                                              <a href="/Producto/detalle/{{producto.id}}/"><button type="button" class="btn btn-info">Ver</button> </a>
-                                              <a href="/Producto/editar/{{producto.id}}/"><button type="button" class="btn btn-primary">Editar</button></a>
+                                              <a href="/Lote/detalle/{{lote.id}}/"><button type="button" class="btn btn-info">Ver</button> </a>
+                                              <a href="/Lote/editar/{{lote.id}}/"><button type="button" class="btn btn-primary">Editar</button></a>
                                               <a data-target="#myModal" role="button" class="btn btn-danger" data-toggle="modal"><button type="button" class="btn btn-danger" id="{{ oCliente.id }}" onclick="selPersona('{{lote.id}}','{{lote.proveedor.nombreProveedor}}');">Eliminar</button></a>
                                             </td>
                                         </tr>

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block imports %}
+
+{% endblock %}
+
+{% block title %}
+Detalle Lote
+{% endblock %}
+
+{% block content %}
+<div class="card">
+      <div class="card-body wizard-content">
+                  <h3 class="card-title">Detalle de Lote obtenido del proveedor {{oLote.proveedor.nombreProveedor}} </h3>
+                  <div class="steps clearfix">
+                    <div class="steps clearfix">
+
+                      <table id="tCamiones"  class="table">
+					<tr>
+						<td>Fecha: </td>
+						<td>{{ oLote.fecha }}</td>
+
+					</tr>
+					<tr>
+						<td>Tipo de comprobante: </td>
+						<td>{{ oLote.tipoComprobante }}</td>
+					</tr>
+					<tr>
+						<td>Numero comprobante: </td>
+						<td>{{ oLote.nroComprobante }}</td>
+					</tr>
+					<tr>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <td>Producto</td>
+                  <td>Cantidad Actual</td>
+                  <td>Cantidad Inicial de Producto</td>
+                </tr>
+              </thead>
+              <tbody>
+                {% for oProductoLote in oProductoLotes  %}
+                  <tr>
+                    <td>
+                      {{ oProductoLote.producto.nombreProducto }}
+                    </td>
+                    <td>
+                      {{ oProductoLote.cantidad }}
+                    </td>
+                    <td>
+                      {{ oProductoLote.cantidadinicial }}
+                    </td>
+                  </tr>
+
+                {% endfor %}
+              </tbody>
+            </table>
+
+          </tr>
+				</table>
+
+
+
+                            <a href="/Producto/editar/{{oProducto.id}}/"><button type="button" class="btn btn-primary">Editar</button></a>
+
+                 </div>
+                </div>
+
+            </div>
+        </div>
+
+
+{% endblock %}

@@ -15,6 +15,14 @@ from django.views.decorators.csrf import csrf_exempt
 
 @login_required
 @permission_required('is_admin')
+def registrarLote(request):
+    template = loader.get_template('almacen/lote.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+
+@login_required
+@permission_required('is_admin')
 def listarLote(request):
     oLote = Lote.objects.all()
     template = loader.get_template('almacen/listarLote.html')
@@ -92,3 +100,12 @@ def eliminarLoteAjax(request):
     oLote.delete()
     response = {}
     return JsonResponse(response)
+
+@login_required
+@permission_required('is_admin')
+def detalleLote(request,lote_id):
+    oLote = Lote.objects.get(id=lote_id)
+    template = loader.get_template('almacen/detalleLote.html')
+    oProductoLotes = Producto_lote.objects.filter(lote_id=oLote.id)
+    context = {'oLote':oLote,'oProductoLotes':oProductoLotes,}
+    return HttpResponse(template.render(context, request))
