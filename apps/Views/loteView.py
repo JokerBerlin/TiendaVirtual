@@ -13,6 +13,27 @@ from django.conf import settings
 
 from django.views.decorators.csrf import csrf_exempt
 
+@login_required
+@permission_required('is_admin')
+def listarLote(request):
+    oLote = Lote.objects.all()
+    template = loader.get_template('almacen/listarLote.html')
+    oProductos = []
+    for lote in oLote:
+        oLoteProducto = Producto_lote.objects.filter(lote_id=lote.id)
+        for oloPro in oLoteProducto:
+            oNuevo={}
+            oNuevo['id']=lote.id
+            oNuevo['producto']=oloPro.producto.nombreProducto
+            oNuevo['cantidad']=oloPro.cantidad
+            oNuevo['cantidadInicial']=oloPro.cantidadinicial
+            oProductos.append(oNuevo)
+    print(oProductos)
+    context = {'oLote':oLote,'oProductos':oProductos,}
+    return HttpResponse(template.render(context, request))
+
+
+
 @csrf_exempt
 def registrarLoteAjax(request):
     if request.method == 'POST':

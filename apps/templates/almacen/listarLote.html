@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block imports %}
-  <link rel="stylesheet" type="text/css" href="/static/assets/extra-libs/multicheck/multicheck.css">
-  <link href="/static/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
-  <link href="/static/dist/css/style.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="/static/assets/extra-libs/multicheck/multicheck.css">
+    <link href="/static/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="/static/dist/css/style.min.css" rel="stylesheet">
 {% endblock %}
 
+
+
 {% block title %}
-Listar Productos
+Listar Lote
 {% endblock %}
 
 {% block content %}
@@ -17,18 +18,37 @@ Listar Productos
                             <div class="table-responsive">
                                 <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="zero_config_length"><!--<label>Show <select name="zero_config_length" aria-controls="zero_config" class="form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="zero_config_filter" class="dataTables_filter"><label>Search my:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="zero_config"></label>--></div></div></div><div class="row"><div class="col-sm-12"><table id="zero_config" class="table table-striped table-bordered dataTable" role="grid" aria-describedby="zero_config_info">
                                     <thead>
-                                        <tr role="row"><th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 50px;">Nombre</th><th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 20px;">Precio</th><th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 50px;">Imagen</th><th class="sorting_desc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 10px;" aria-sort="descending">Talla</th><th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 40px;">Cantidad</th><th class="sorting_desc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 10px;" aria-sort="descending">Categoria</th><th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 85px;">Opciones</th></tr>
+                                        <tr role="row"><th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 50px;">Fecha</th><th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 20px;">Proveedor</th><th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 50px;">Tip Comp</th><th class="sorting_desc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 10px;" aria-sort="descending">Num Comp</th><th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 40px;">Producto/Cantidad/Cantidad Inicial</th><th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 85px;">Opciones</th></tr>
                                     </thead>
                                     <tbody>
 
-                                    {% for producto in oProducto  %}
+                                    {% for lote in oLote  %}
                                     <tr role="row" class="odd">
-                                            <td class="">{{ producto.nombreProducto }}</td>
-                                            <td>{{ producto.precioProducto }}</td>
-                                            <td><img src="/media/{{producto.imagenProducto}}" height="100" width="100" alt="" /></td>
-                                            <td class="sorting_1">{{ producto.tallaProducto }}</td>
-                                            <td>{{ producto.stockProducto }}</td>
-                                            <td>{{ producto.categoria.nombreCategoria }}</td>
+                                            <td class="">{{ lote.fecha }}</td>
+                                            <td>{{ lote.proveedor.nombreProveedor }}</td>
+                                            <td>{{ lote.tipoComprobante }}</td>
+                                            <td class="sorting_1">{{ lote.nroComprobante }}</td>
+                                            <td>
+                                              {% for oNue in oProductos %}
+                                                {% if lote.id == oNue.id %}
+                                                    <table id="tProductos" class="table">
+                                                      <tr>
+                                                        <td>
+                                                          {{ oNue.producto }}
+                                                        </td>
+                                                        <td>
+                                                          {{ oNue.cantidad }}
+                                                        </td>
+                                                        <td>
+                                                          {{ oNue.cantidadInicial }}
+                                                        </td>
+                                                      </tr>
+
+                                                    </table>
+
+                                                {% endif %}
+                                              {% endfor %}
+                                            </td>
                                             <td>
                                               <a href="/Producto/detalle/{{producto.id}}/"><button type="button" class="btn btn-info">Ver</button> </a>
                                               <a href="/Producto/editar/{{producto.id}}/"><button type="button" class="btn btn-primary">Editar</button></a>
@@ -57,5 +77,6 @@ Listar Productos
          ****************************************/
         $('#zero_config').DataTable();
     </script>
+
 
 {% endblock %}

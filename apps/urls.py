@@ -23,6 +23,7 @@ urlpatterns = [
     path('Lote/registrar/',registrarLote,name = "registrar_lote"),
 
     path('Lote/insertar/',registrarLoteAjax,name = "registrar_lote_ajax"),
+    path('Lote/listar/',listarLote,name = "listar_lote"),
 
     path('Proveedor/buscarajax/', buscarProveedorAjax, name = "buscar_proveedor_ajax"),
 
