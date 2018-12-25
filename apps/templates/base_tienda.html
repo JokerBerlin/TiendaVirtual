@@ -169,14 +169,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span class="fa fa-map-marker" aria-hidden="true"></span> Donde Estamos</a>
 					</li>
 					<li>
-						<a href="#" data-toggle="modal" data-target="#myModal1">
-							<span class="fa fa-truck" aria-hidden="true"></span>Ver Ordenes</a>
-					</li>
-					<li>
 						<span class="fa fa-phone" aria-hidden="true"></span> 982713310
 					</li>
 					{% if user.is_authenticated %}
-					  <li>Welcome, {{ user.first_name }} {{ user.last_name }}</li>
+						<li>
+							<span class="fa fa-truck" aria-hidden="true"></span> <a href="/Tienda/listarCompra/">Ver compras</a>
+						</li>
+					  <li>Bienvenido, {{ user.first_name }} {{ user.last_name }}</li>
 					{% else %}
 						<li>
 							<a href="#" data-toggle="modal" data-target="#myModal1">
@@ -502,12 +501,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="footer-top">
 		<div class="container-fluid">
 			<div class="col-xs-8 agile-leftmk">
-				<h2>Obtén nuestras ofertas!</h2>
-				<!--<p>Free Delivery on your first order!</p>-->
-				<form action="#" method="post">
-					<input type="email" placeholder="E-mail" name="email" required="">
-					<input type="submit" value="Subscribete	">
-				</form>
 				<div class="newsform-w3l">
 					<span class="fa fa-envelope-o" aria-hidden="true"></span>
 				</div>

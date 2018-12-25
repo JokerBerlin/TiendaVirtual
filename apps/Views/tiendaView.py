@@ -70,6 +70,19 @@ def detalleProductoTienda(request, id):
     context = {'oProducto':oProducto,'oCategorias':oCategorias,'oProductoLote':oProductoLote,}
     return HttpResponse(template.render(context, request))
 
+
+def listarCompra(request):
+    try:
+        userid = request.user.id
+        id_usuario = User.objects.get(id=userid)
+        oCompras = Compra.objects.filter(user_id=id_usuario.id)
+        template = loader.get_template('tienda/mostrarCompra.html')
+        oCategorias = Categoria.objects.all()
+        context = {'oCategorias':oCategorias,'oCompras':oCompras,}
+        return HttpResponse(template.render(context, request))
+    except Exception as e:
+        return redirect('/Tienda/inicio/')
+
 def listarCarrito(request):
     try:
         userid = request.user.id

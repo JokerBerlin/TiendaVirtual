@@ -1,0 +1,113 @@
+{% extends "base_tienda.html" %}
+<!-- top Products -->
+{% block imports %}
+
+{% endblock %}
+
+{% block title %}
+Contáctenos
+{% endblock %}
+
+{% block content %}
+
+
+<div class="services-breadcrumb">
+		<div class="agile_inner_breadcrumb">
+			<div class="container">
+				<ul class="w3_short">
+					<li>
+						<a href="index.html">Home</a>
+						<i>|</i>
+					</li>
+					<li>contact Us</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- //page -->
+	<!-- contact page -->
+	<div class="contact-w3l">
+		<div class="container">
+			<!-- tittle heading -->
+			<h3 class="tittle-w3l">Compras
+				<span class="heading-style">
+					<i></i>
+					<i></i>
+					<i></i>
+				</span>
+			</h3>
+			<!-- //tittle heading -->
+			<!-- contact -->
+			<div class="contact agileits">
+				<div class="contact-agileinfo">
+					<div class="contact-form wthree">
+            <div class="form-group">
+        <table id="tVentas"  class="table">
+          <thead>
+            <tr>
+                <th>#</th>
+                <th>Fecha</th>
+                <th>tipo Comprobante</th>
+                <th>numero Comprobante</th>
+                <th>montoTotal</th>
+                <th>Producto</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for oCompra in oCompras %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{oCompra.fecha }}</td>
+              <td>{{oCompra.tipoComprobante}}</td>
+              <td>{{oCompra.nroComprobante}}</td>
+              <td>{{oCompra.montoTotal }}</td>
+              <td>
+                {% for oNue in oProductos %}
+                  {% if oVent.id == oNue.id %}
+                      <table id="tProductos" class="table">
+                        <tr>
+                          {{ oNue.producto }}
+                        </tr>
+                      </table>
+
+                  {% endif %}
+                {% endfor %}
+              </td>
+              <td>
+                <a href="/Venta/detalle/{{oVent.id}}/"><span class="fa fa-search fa-2x" style="color:purple;"></span></a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br>
+
+      <div class="center">
+        <ul class="pagination">
+          {% if oVenta.has_previous %}
+                    <li><a href="?page={{oVenta.previous_page_number}}"><<</a></li>
+                {% endif %}
+
+
+              {% for pg in page_range %}
+                  {% if oVenta.number == pg %}
+                      <li><a class="active" href="?page={{pg}}" class="btn btn-default">{{pg}}</a></li>
+                  {% else %}
+                      <li><a href="?page={{pg}}" class="btn">{{pg}}</a></li>
+                  {% endif %}
+              {% endfor %}
+
+                {% if oVenta.has_next %}
+                    <li><a href="?page={{oVenta.next_page_number}}">>></a></li>
+                {% endif %}
+					</div>
+
+				</div>
+			</div>
+			<!-- //contact -->
+		</div>
+	</div>
+	<!-- map -->
+
+{% endblock %}
