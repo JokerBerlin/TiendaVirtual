@@ -63,7 +63,7 @@ def LoginTienda(request):
 
 def Logout(request):
     logout(request)
-    return HttpResponseRedirect(settings.LOGIN_URL)
+    return HttpResponseRedirect(settings.LOGIN_URL2)
 
 @login_required
 def mostrarInicio(request):
