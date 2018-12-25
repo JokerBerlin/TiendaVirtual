@@ -17,6 +17,7 @@ Productos
 	</div>
 	<!-- //banner-2 -->
 	<!-- page -->
+	<script src="/static/tienda/js/agregarCarrito.js"></script>
 	<div class="services-breadcrumb">
 		<div class="agile_inner_breadcrumb">
 			<div class="container">
@@ -91,7 +92,7 @@ Productos
     									</div>
     									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
     											<fieldset>
-    												<input type="submit" name="submit" value="Añadir al carro" class="button" />
+    												<input type="submit" name="submit" value="Añadir al carro" onclick="agregarCarritoUnitario({{oProducto.id}});" class="button" />
     											</fieldset>
                           <br>
 
