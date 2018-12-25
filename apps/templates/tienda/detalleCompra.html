@@ -42,6 +42,7 @@ Contáctenos
 				<div class="contact-agileinfo">
 					<div class="contact-form wthree">
             <div id="imprimir" class="form-group">
+              <h3>Tienda de Zapatos</h3>
               <table id="tCamiones"  class="table">
                   <tr>
                     <td>Fecha: </td>
@@ -78,19 +79,39 @@ Contáctenos
                             <td>
                               {{ oProductoCompra.producto.precioOfertaProducto }}
                             </td>
-                          </tr>
+                            <td>
+                              {% for producto in oProducto  %}
+                                  {% if producto.id == oProductoCompra.id %}
+                                      {{ producto.subTotal }}
+                                  {% endif %}
+                              {% endfor %}
 
+                            </td>
+                          </tr>
                         {% endfor %}
                       </tbody>
                     </table>
 
                   </tr>
                 </table>
+                <div style="float: right;" >
+                    <label class="float-right">Sub Total: S/ {{ oStIgv }}</label>
+                    <br>
+                    <label for="">Igv: S/ {{ oIgv }}</label>
+                    <br>
+                    <label for="">Total: S/ {{ oCompra.montoTotal }}</label>
+                    <br>
+                </div>
+                <br>
+                <br>
+                <br>
             </div>
       <br>
+        <div class="">
+          <button class="btn btn-warning" type="button" onclick="printDiv('imprimir');" name="button">Imprimir</button>
 
-      <button type="button" onclick="printDiv('imprimir');" name="button">Imprimir</button>
-			<!-- //contact -->
+        </div>
+      <!-- //contact -->
 		</div>
 	</div>
 	<!-- map -->
