@@ -41,7 +41,7 @@ Contáctenos
 			<div class="contact agileits">
 				<div class="contact-agileinfo">
 					<div class="contact-form wthree">
-            <div class="form-group">
+            <div id="imprimir" class="form-group">
               <table id="tCamiones"  class="table">
                   <tr>
                     <td>Fecha: </td>
@@ -89,31 +89,24 @@ Contáctenos
             </div>
       <br>
 
-      <div class="center">
-        <ul class="pagination">
-          {% if oVenta.has_previous %}
-                    <li><a href="?page={{oVenta.previous_page_number}}"><<</a></li>
-                {% endif %}
-
-
-              {% for pg in page_range %}
-                  {% if oVenta.number == pg %}
-                      <li><a class="active" href="?page={{pg}}" class="btn btn-default">{{pg}}</a></li>
-                  {% else %}
-                      <li><a href="?page={{pg}}" class="btn">{{pg}}</a></li>
-                  {% endif %}
-              {% endfor %}
-
-                {% if oVenta.has_next %}
-                    <li><a href="?page={{oVenta.next_page_number}}">>></a></li>
-                {% endif %}
-					</div>
-
-
-			</div>
+      <button type="button" onclick="printDiv('imprimir');" name="button">Imprimir</button>
 			<!-- //contact -->
 		</div>
 	</div>
 	<!-- map -->
+
+  <script type="text/javascript">
+    function printDiv(nombreDiv) {
+       var contenido= document.getElementById(nombreDiv).innerHTML;
+       var contenidoOriginal= document.body.innerHTML;
+
+       document.body.innerHTML = contenido;
+
+       window.print();
+
+       document.body.innerHTML = contenidoOriginal;
+    }
+
+  </script>
 
 {% endblock %}
