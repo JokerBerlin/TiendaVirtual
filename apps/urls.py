@@ -37,6 +37,8 @@ urlpatterns = [
 
     path('Compra/listar/usuarios/',listarCompraUsuario, name="listar_compra"),
     path('Compra/detalle/usuarios/<int:compra_id>/',detalleCompraAdmin, name="detalle_compra_admin"),
+    path('Reporte/cantidadProductos/',reporteCantidadProducto, name="reporte_cantida_producto"),
+
 
     path('Tienda/inicio/', LoginTienda,name="mostrar_inicio"),
     path('Tienda/contacto/', mostrarContacto),

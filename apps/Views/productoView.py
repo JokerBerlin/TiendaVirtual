@@ -128,3 +128,24 @@ def detalleCompraAdmin(request, compra_id):
     template = loader.get_template('compra/detalle.html')
     context = {'oCategorias':oCategorias,'oCompra':oCompra,'oProductoCompras':oProductoCompras,'oProducto':oProducto,'oStIgv':oStIgv,'oIgv':oIgv,}
     return HttpResponse(template.render(context, request))
+
+@login_required
+@permission_required('is_admin')
+def reporteCantidadProducto(request):
+    oProductos = Producto.objects.all()
+    productos = []
+    for oProducto in oProductos:
+        nuevo = {}
+        try:
+            ProductoLote = Producto_lote.objects.filter(producto_id=oProducto.id).latest('id')
+
+            nuevo['nombre'] = oProducto.nombreProducto
+            nuevo['cantidad'] = ProductoLote.cantidad
+        except Exception as e:
+            nuevo['nombre'] = oProducto.nombreProducto
+            nuevo['cantidad'] = 0
+        productos.append(nuevo)
+
+    template = loader.get_template('reporte/cantidadProductos.html')
+    context = {'productos':productos,}
+    return HttpResponse(template.render(context, request))
