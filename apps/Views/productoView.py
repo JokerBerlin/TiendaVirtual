@@ -149,3 +149,25 @@ def reporteCantidadProducto(request):
     template = loader.get_template('reporte/cantidadProductos.html')
     context = {'productos':productos,}
     return HttpResponse(template.render(context, request))
+
+
+def reporteProductosMasVendidos(request):
+    oProductos = Producto.objects.all()
+    productos = []
+    for oProducto in oProductos:
+        nuevo = {}
+        try:
+            ProductoCompra = Producto_compra.objects.filter(producto_id=oProducto.id)
+            cantidadVendido = 0
+            for productoC in ProductoCompra:
+                cantidadVendido = cantidadVendido + productoC.cantidad
+            nuevo['nombre'] = oProducto.nombreProducto
+            nuevo['cantidad'] = cantidadVendido
+        except Exception as e:
+            nuevo['nombre'] = oProducto.nombreProducto
+            nuevo['cantidad'] = 0
+        productos.append(nuevo)
+
+    template = loader.get_template('reporte/cantidadProductos.html')
+    context = {'productos':productos,}
+    return HttpResponse(template.render(context, request))
