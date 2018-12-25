@@ -61,3 +61,15 @@ class carroCompra(models.Model):
     estado = models.BooleanField(blank=True,default=True)
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.PROTECT)
     producto = models.ForeignKey(Producto, on_delete=models.PROTECT)
+
+class Compra(models.Model):
+    fecha = models.DateTimeField(auto_now_add=True, blank=True)
+    tipoComprobante = models.CharField(max_length=7)
+    nroComprobante = models.CharField(max_length=20)
+    montoTotal = models.FloatField()
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.PROTECT)  # Field name made lowercase.
+
+class Producto_compra(models.Model):
+    cantidad = models.IntegerField()
+    producto = models.ForeignKey(Producto, on_delete=models.PROTECT)  # Field name made lowercase.
+    compra = models.ForeignKey(Compra, on_delete=models.CASCADE)  # Field name made lowercase.
