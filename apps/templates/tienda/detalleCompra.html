@@ -44,6 +44,11 @@ Contáctenos
             <div id="imprimir" class="form-group">
               <h3>Tienda de Zapatos</h3>
               <table id="tCamiones"  class="table">
+                <tr>
+                  <td>Cliente: </td>
+                  <td>{{ oCompra.user.last_name }}, {{ oCompra.user.first_name }} </td>
+
+                </tr>
                   <tr>
                     <td>Fecha: </td>
                     <td>{{ oCompra.fecha }}</td>

@@ -81,7 +81,9 @@ def listarCompra(request):
         context = {'oCategorias':oCategorias,'oCompras':oCompras,}
         return HttpResponse(template.render(context, request))
     except Exception as e:
-        return redirect('/Tienda/inicio/')
+        oCompra = Compra.objects.all().latest('id')
+        compra_id = str(oCompra.id)
+        return redirect('/Tienda/detalleCompra/'+compra_id+'/')
 
 def detalleCompra(request, compra_id):
     oCompra = Compra.objects.get(id=compra_id)
