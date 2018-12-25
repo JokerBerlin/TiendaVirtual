@@ -16,7 +16,7 @@ function agregarCarrito(idProducto){
 
         success: function (result) {
         //     var id_venta = result["id_venta"];
-             alert('Carro registrado');
+             //alert('Carro registrado');
 
              //location.reload(true);
              //document.location.href='/Pedido/listar/';

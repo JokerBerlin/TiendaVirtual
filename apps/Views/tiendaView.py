@@ -71,9 +71,16 @@ def detalleProductoTienda(request, id):
     return HttpResponse(template.render(context, request))
 
 def listarCarrito(request):
+    try:
+        userid = request.user.id
+        id_usuario = User.objects.get(id=userid)
+        oCarroCompra = carroCompra.objects.filter(estado = True, user_id=id_usuario.id)
+    except Exception as e:
+        oCarroCompra = carroCompra.objects.filter(estado=True,user_id=None)
+    print(oCarroCompra)
     template = loader.get_template('tienda/listarCarrito.html')
     oCategorias = Categoria.objects.all()
-    context = {'oCategorias':oCategorias}
+    context = {'oCategorias':oCategorias,'oCarroCompra':oCarroCompra,}
     return HttpResponse(template.render(context, request))
 
 def mostrarPago(request):
@@ -133,6 +140,12 @@ def CategoriaProductoTienda(request, id):
     context = {'oProductos':productoPagina,'oCategorias':oCategorias,'page_range': page_range}
 
     return HttpResponse(template.render(context, request))
+
+def eliminarCarro(request, carro_id):
+    oCarro = carroCompra.objects.get(id=carro_id)
+    oCarro.delete()
+    return redirect('/Tienda/carrito/listar/')
+
 
 @csrf_exempt
 def CrearCarroAjax(request):
