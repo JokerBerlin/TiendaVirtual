@@ -1,0 +1,151 @@
+{% extends "base_tienda.html" %}
+<!-- top Products -->
+{% block imports %}
+<!--quantity-->
+<script>
+  $('.value-plus').on('click', function () {
+    var divUpd = $(this).parent().find('.value'),
+      newVal = parseInt(divUpd.text(), 10) + 1;
+    divUpd.text(newVal);
+  });
+
+  $('.value-minus').on('click', function () {
+    var divUpd = $(this).parent().find('.value'),
+      newVal = parseInt(divUpd.text(), 10) - 1;
+    if (newVal >= 1) divUpd.text(newVal);
+  });
+</script>
+<!--quantity-->
+<script>
+  $(document).ready(function (c) {
+    $('.close1').on('click', function (c) {
+      $('.rem1').fadeOut('slow', function (c) {
+        $('.rem1').remove();
+      });
+    });
+  });
+</script>
+<script>
+  $(document).ready(function (c) {
+    $('.close2').on('click', function (c) {
+      $('.rem2').fadeOut('slow', function (c) {
+        $('.rem2').remove();
+      });
+    });
+  });
+</script>
+<script>
+  $(document).ready(function (c) {
+    $('.close3').on('click', function (c) {
+      $('.rem3').fadeOut('slow', function (c) {
+        $('.rem3').remove();
+      });
+    });
+  });
+</script>
+<!--//quantity-->
+{% endblock %}
+
+{% block title %}
+Listar Carrito
+{% endblock %}
+
+{% block content %}
+
+	<!-- page -->
+  <script src="/static/tienda/js/editarCarrito.js"></script>
+
+	<div class="services-breadcrumb">
+		<div class="agile_inner_breadcrumb">
+			<div class="container">
+				<ul class="w3_short">
+					<li>
+						<a href="index.html">Home</a>
+						<i>|</i>
+					</li>
+					<li>Checkout</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- //page -->
+	<!-- checkout page -->
+	<div class="privacy">
+		<div class="container">
+			<!-- tittle heading -->
+			<h3 class="tittle-w3l">Checkout
+				<span class="heading-style">
+					<i></i>
+					<i></i>
+					<i></i>
+				</span>
+			</h3>
+			<!-- //tittle heading -->
+			<div class="checkout-right">
+				<h4>Your shopping cart contains:
+					<span>3 Products</span>
+				</h4>
+				<div class="table-responsive">
+					<table class="timetable_sub">
+						<thead>
+							<tr>
+								<th>SL No.</th>
+								<th>Product</th>
+								<th>Quality</th>
+								<th>Product Name</th>
+
+								<th>Price</th>
+                <th>Edit</th>
+								<th>Remove</th>
+							</tr>
+						</thead>
+						<tbody>
+              {% for carro in oCarroCompra %}
+                {% for cant in cantidadPro %}
+                    {% if carro.id == cant.id %}
+                        <tr class="rem1">
+                          <td class="invert">{{ forloop.counter }}</td>
+                          <td class="invert-image">
+
+                              <img src="/media/{{ carro.producto.imagenProducto }}" data-imagezoom="true" width="100" height="100">
+
+                          </td>
+                          <td class="invert">
+                            <input type="number" id="cambiarValor{{ carro.id }}" class="form-control" value="{{ carro.cantidad }}" max="{{ cant.cantidad }}">
+                          </td>
+                          <td class="invert">{{ carro.producto.nombreProducto }}</td>
+                          <td class="invert">S/. {{ carro.producto.precioOfertaProducto }}</td>
+                          <td class="invert">
+                            <a role="button" class="fa fa-edit fa-2x fa-lg" style="color:#00000;" onclick="editarCarrito({{carro.id}})"></a>
+                          </td>
+                          <td class="invert">
+                            <div class="rem">
+                              <a href="/Carro/eliminar/{{ carro.id }}/" class="close1"></a>
+                            </div>
+                          </td>
+                        </tr>
+                    {% endif %}
+
+                {% endfor %}
+
+              {% endfor %}
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="checkout-left">
+				<div class="address_form_agile">
+
+					<div class="checkout-right-basket">
+						<a href="/Tienda/pago/">Comprar
+							<span class="fa fa-hand-o-right" aria-hidden="true"></span>
+						</a>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!-- //checkout page -->
+{% endblock %}

@@ -97,7 +97,7 @@ def mostrarPago(request):
             oMedioPago = Medio_pago.objects.get(nombreEnTarjeta=Datos["name"],numeroTarjeta=Datos["number"],ccv=Datos["security-code"],fechaExpiracion=Datos["expiration-month-and-year"])
             print('Exito')
             print(oMedioPago.nombreEnTarjeta)
-            return redirect('/Tienda/login/')
+            return redirect('/Tienda/comprar/')
         except Exception as e:
             error = 'Los datos ingresados son incorrectos'
             template = loader.get_template('tienda/pago.html')
@@ -110,6 +110,26 @@ def mostrarPago(request):
         oCategorias = Categoria.objects.all()
         context = {'oCategorias':oCategorias}
         return HttpResponse(template.render(context, request))
+
+def realizarPago(request):
+    try:
+        userid = request.user.id
+        id_usuario = User.objects.get(id=userid)
+        oCarroCompra = carroCompra.objects.filter(estado = True, user_id=id_usuario.id)
+    except Exception as e:
+        oCarroCompra = carroCompra.objects.filter(estado=True,user_id=None)
+    cantidadPro = []
+    for carro in oCarroCompra:
+        oLote = Producto_lote.objects.filter(producto_id=carro.producto_id).latest('-id')
+        nuevo = {}
+        nuevo["id"] = carro.id
+        nuevo["cantidad"] = oLote.cantidad
+        cantidadPro.append(nuevo)
+    template = loader.get_template('tienda/realizarCompra.html')
+    oCategorias = Categoria.objects.all()
+    context = {'oCategorias':oCategorias,'oCarroCompra':oCarroCompra,'cantidadPro':cantidadPro,}
+    return HttpResponse(template.render(context, request))
+
 
 def listarProductoTienda(request):
     oCategorias = Categoria.objects.all()
