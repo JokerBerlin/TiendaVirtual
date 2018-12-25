@@ -111,7 +111,12 @@ Términos y Condiciones
 							</div>
 						</div>
 						<div>
-							<form action="#" method="post" class="creditly-card-form agileinfo_form">
+							<form action="/Tienda/pago/" method="post" class="creditly-card-form agileinfo_form">
+								{% csrf_token %}
+								<div class="alert alert-danger">
+									  <strong>{{ error }}</strong>
+									</div>
+
 								<div class="creditly-wrapper wthree, w3_agileits_wrapper">
 									<div class="credit-card-wrapper">
 										<div class="first-row form-group">
@@ -141,7 +146,7 @@ Términos y Condiciones
 											</div>
 										</div>
 										<button class="submit">
-											<span>Pagar</span>
+											<span>Pagar </span>
 										</button>
 									</div>
 								</div>

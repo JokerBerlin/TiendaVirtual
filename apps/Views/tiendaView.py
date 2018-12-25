@@ -91,10 +91,25 @@ def listarCarrito(request):
     return HttpResponse(template.render(context, request))
 
 def mostrarPago(request):
-    template = loader.get_template('tienda/pago.html')
-    oCategorias = Categoria.objects.all()
-    context = {'oCategorias':oCategorias}
-    return HttpResponse(template.render(context, request))
+    if request.method == 'POST':
+        Datos = request.POST
+        try:
+            oMedioPago = Medio_pago.objects.get(nombreEnTarjeta=Datos["name"],numeroTarjeta=Datos["number"],ccv=Datos["security-code"],fechaExpiracion=Datos["expiration-month-and-year"])
+            print('Exito')
+            print(oMedioPago.nombreEnTarjeta)
+            return redirect('/Tienda/login/')
+        except Exception as e:
+            error = 'Los datos ingresados son incorrectos'
+            template = loader.get_template('tienda/pago.html')
+            oCategorias = Categoria.objects.all()
+            context = {'oCategorias':oCategorias, 'error':error,}
+            return HttpResponse(template.render(context, request))
+
+    else:
+        template = loader.get_template('tienda/pago.html')
+        oCategorias = Categoria.objects.all()
+        context = {'oCategorias':oCategorias}
+        return HttpResponse(template.render(context, request))
 
 def listarProductoTienda(request):
     oCategorias = Categoria.objects.all()
