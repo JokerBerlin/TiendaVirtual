@@ -1,10 +1,20 @@
-from django.template import loader
-from django.http import HttpResponseRedirect, HttpResponse, Http404
-
-from apps.models import *
 
 ##paginacion
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
+from django.shortcuts import render, render_to_response, redirect, get_object_or_404
+from apps.models import *
+from apps.formularios.productoForm import *
+from django.template import loader
+from django.http import HttpResponseRedirect, HttpResponse, Http404
+
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, permission_required
+# Create your views here.
+from django.views.decorators.csrf import csrf_exempt
+import json
+from django.conf import settings
 
 def pruebaTienda(request):
     oCategorias = Categoria.objects.all()
@@ -47,9 +57,17 @@ def mostrarAyuda(request):
 
 def detalleProductoTienda(request, id):
     oProducto = Producto.objects.get(id=id)
+    try:
+        oProductoLote = Producto_lote.objects.filter(producto_id=oProducto.id).latest('-id')
+    except Exception as e:
+        oProducto = ''
+        oProductoLote = ''
+
+    # userid = request.user.id
+    # id_usuario = User.objects.get(id=userid)
     template = loader.get_template('tienda/detalleProducto.html')
     oCategorias = Categoria.objects.all()
-    context = {'oProducto':oProducto,'oCategorias':oCategorias}
+    context = {'oProducto':oProducto,'oCategorias':oCategorias,'oProductoLote':oProductoLote,}
     return HttpResponse(template.render(context, request))
 
 def listarCarrito(request):
@@ -115,3 +133,25 @@ def CategoriaProductoTienda(request, id):
     context = {'oProductos':productoPagina,'oCategorias':oCategorias,'page_range': page_range}
 
     return HttpResponse(template.render(context, request))
+
+@csrf_exempt
+def CrearCarroAjax(request):
+    if request.method == 'POST':
+            Datos = json.loads(request.body)
+            idProducto = Datos['idProducto']
+            cantidad = Datos['cantidad']
+            # if nombreProveedor.isdigit() == False :
+            #     nombreProveedor = Proveedor.objects.get(nombre=nombreProveedor).documento
+
+            oCarroCompra = carroCompra()
+            oCarroCompra.cantidad = cantidad
+            oCarroCompra.producto_id = idProducto
+            try:
+                userid = request.user.id
+                id_usuario = User.objects.get(id=userid)
+                oCarroCompra.user_id = id_usuario.id
+            except Exception as e:
+                print('none')
+            oCarroCompra.save()
+
+            return HttpResponse(json.dumps({'exito':1}), content_type="application/json")

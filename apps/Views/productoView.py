@@ -11,8 +11,6 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.conf import settings
 
-from django.views.decorators.csrf import csrf_exempt
-
 @login_required
 @permission_required('is_admin')
 def registrarProducto(request):

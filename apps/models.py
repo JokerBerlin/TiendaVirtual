@@ -55,3 +55,9 @@ class Producto_lote(models.Model):
     cantidadinicial = models.IntegerField()
     producto = models.ForeignKey(Producto, on_delete=models.PROTECT)  # Field name made lowercase.
     lote = models.ForeignKey(Lote, on_delete=models.CASCADE)  # Field name made lowercase.
+
+class carroCompra(models.Model):
+    cantidad = models.IntegerField()
+    estado = models.BooleanField(blank=True,default=True)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.PROTECT)
+    producto = models.ForeignKey(Producto, on_delete=models.PROTECT)
