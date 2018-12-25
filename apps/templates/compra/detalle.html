@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block imports %}
+
+{% endblock %}
+
+{% block title %}
+Detalle Lote
+{% endblock %}
+
+{% block content %}
+<div class="card">
+      <div class="card-body wizard-content">
+                  <h3 class="card-title">Detalle de la compra del usuario {{oCompra.user.first_name}} </h3>
+                  <div class="steps clearfix">
+                    <div class="steps clearfix">
+
+                      <table id="tCamiones"  class="table">
+					<tr>
+						<td>Fecha: </td>
+						<td>{{ oCompra.fecha }}</td>
+
+					</tr>
+					<tr>
+						<td>Tipo de comprobante: </td>
+						<td>{{ oCompra.tipoComprobante }}</td>
+					</tr>
+					<tr>
+						<td>Numero comprobante: </td>
+						<td>{{ oCompra.nroComprobante }}</td>
+					</tr>
+					<tr>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <td>Producto</td>
+                  <td>Cantidad</td>
+                  <td>Precio</td>
+                  <td>SubTotal</td>
+                </tr>
+              </thead>
+              <tbody>
+                {% for oProductoCompra in oProductoCompras  %}
+                  <tr>
+                    <td>
+                      {{ oProductoCompra.producto.nombreProducto }}
+                    </td>
+                    <td>
+                      {{ oProductoCompra.cantidad }}
+                    </td>
+                    <td>
+                      {{ oProductoCompra.producto.precioOfertaProducto }}
+                    </td>
+                    <td>
+                      {% for producto in oProducto  %}
+                          {% if producto.id == oProductoCompra.id %}
+                              {{ producto.subTotal }}
+                          {% endif %}
+                      {% endfor %}
+
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          </tr>
+				</table>
+
+
+
+                            <a href="/Compra/listar/usuarios/"><button type="button" class="btn btn-primary">Listar compras</button></a>
+
+                 </div>
+                </div>
+
+            </div>
+        </div>
+
+
+{% endblock %}

@@ -107,3 +107,24 @@ def detalleProducto(request,producto_id):
     template = loader.get_template('producto/detalle.html')
     context = {'oProducto':oProducto,}
     return HttpResponse(template.render(context, request))
+
+
+@login_required
+@permission_required('is_admin')
+def detalleCompraAdmin(request, compra_id):
+    oCompra = Compra.objects.get(id=compra_id)
+    oProductoCompras = Producto_compra.objects.filter(compra_id = compra_id)
+    oProducto = []
+    for oProductoCompra in oProductoCompras:
+        nuevo = {}
+        nuevo['id'] = oProductoCompra.id
+        montoSubTotal = oProductoCompra.cantidad * oProductoCompra.producto.precioOfertaProducto
+        nuevo['subTotal'] = montoSubTotal
+        oProducto.append(nuevo)
+    oStIgv = round(oCompra.montoTotal / 1.18,1)
+    oIgv = round(oCompra.montoTotal - oStIgv,1)
+
+    oCategorias = Categoria.objects.all()
+    template = loader.get_template('compra/detalle.html')
+    context = {'oCategorias':oCategorias,'oCompra':oCompra,'oProductoCompras':oProductoCompras,'oProducto':oProducto,'oStIgv':oStIgv,'oIgv':oIgv,}
+    return HttpResponse(template.render(context, request))
