@@ -373,6 +373,7 @@ Tienda Zapatos
     </div>
     //product left -->
     <!-- product right -->
+		<script src="/static/tienda/js/agregarCarrito.js"></script>
     <div class="agileinfo-ads-display col-md-12">
       <div class="wrapper">
         <!-- first section (nuts) -->
@@ -402,7 +403,7 @@ Tienda Zapatos
                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 
 
-                <input type="submit" name="submit" value="Add to cart" class="button" />
+                <input type="submit" name="submit" value="Add to cart" onclick="agregarCarritoUnitario({{oProducto.id}});"  class="button" />
 
 
                 </div>
@@ -458,7 +459,7 @@ Tienda Zapatos
         <li>
           <div class="w3l-specilamk">
             <div class="speioffer-agile">
-              <a href="single.html">
+              <a href="/Tienda/productoDetalle/{{ productoE.id }}/">
                 <img src="/media/{{ productoE.imagenProducto }}" width="126" height="150" >
               </a>
             </div>
@@ -471,7 +472,7 @@ Tienda Zapatos
                 <p>Antes S/.{{ productoE.precioProducto }}</p>
               </div>
               <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                <input type="submit" name="submit" value="Add to cart" class="button" />
+                <input type="submit" name="submit" value="Add to cart" onclick="agregarCarritoUnitario({{ productoE.id }});" class="button" />
                   </fieldset>
               </div>
             </div>

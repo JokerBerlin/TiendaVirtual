@@ -35,7 +35,7 @@ urlpatterns = [
     path('Carro/editar/',editarCarro, name="editar_carro"),
 
 
-    path('Tienda/inicio/', pruebaTienda,name="mostrar_inicio"),
+    path('Tienda/inicio/', LoginTienda,name="mostrar_inicio"),
     path('Tienda/contacto/', mostrarContacto),
     path('Tienda/nosotros/', mostrarSobreNosotros),
     path('Tienda/terminos/', mostrarTerminos),
