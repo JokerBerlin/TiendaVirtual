@@ -90,19 +90,16 @@ Listar Carrito
 						<thead>
 							<tr>
 								<th>SL No.</th>
-								<th>Product</th>
-								<th>Quality</th>
-								<th>Product Name</th>
+								<th>Producto</th>
+								<th>Cantidad</th>
+								<th>Nombre de producto</th>
 
-								<th>Price</th>
-                <th>Edit</th>
-								<th>Remove</th>
+								<th>Precio</th>
 							</tr>
 						</thead>
 						<tbody>
               {% for carro in oCarroCompra %}
-                {% for cant in cantidadPro %}
-                    {% if carro.id == cant.id %}
+
                         <tr class="rem1">
                           <td class="invert">{{ forloop.counter }}</td>
                           <td class="invert-image">
@@ -111,22 +108,12 @@ Listar Carrito
 
                           </td>
                           <td class="invert">
-                            <input type="number" id="cambiarValor{{ carro.id }}" class="form-control" value="{{ carro.cantidad }}" max="{{ cant.cantidad }}">
+                            {{ carro.cantidad }}
                           </td>
                           <td class="invert">{{ carro.producto.nombreProducto }}</td>
                           <td class="invert">S/. {{ carro.producto.precioOfertaProducto }}</td>
-                          <td class="invert">
-                            <a role="button" class="fa fa-edit fa-2x fa-lg" style="color:#00000;" onclick="editarCarrito({{carro.id}})"></a>
-                          </td>
-                          <td class="invert">
-                            <div class="rem">
-                              <a href="/Carro/eliminar/{{ carro.id }}/" class="close1"></a>
-                            </div>
-                          </td>
-                        </tr>
-                    {% endif %}
 
-                {% endfor %}
+                        </tr>
 
               {% endfor %}
 
@@ -138,9 +125,13 @@ Listar Carrito
 				<div class="address_form_agile">
 
 					<div class="checkout-right-basket">
-						<a href="/Tienda/pago/">Comprar
-							<span class="fa fa-hand-o-right" aria-hidden="true"></span>
-						</a>
+            <form action="/Tienda/comprar/" method="post">
+              {% csrf_token %}
+              <button class="submit">
+                <span>Comprar </span>
+              </button>
+            </form>
+
 					</div>
 				</div>
 				<div class="clearfix"> </div>

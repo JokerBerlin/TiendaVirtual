@@ -119,16 +119,48 @@ def realizarPago(request):
     except Exception as e:
         oCarroCompra = carroCompra.objects.filter(estado=True,user_id=None)
     cantidadPro = []
+    montoTotal = 0
     for carro in oCarroCompra:
-        oLote = Producto_lote.objects.filter(producto_id=carro.producto_id).latest('-id')
-        nuevo = {}
-        nuevo["id"] = carro.id
-        nuevo["cantidad"] = oLote.cantidad
-        cantidadPro.append(nuevo)
-    template = loader.get_template('tienda/realizarCompra.html')
-    oCategorias = Categoria.objects.all()
-    context = {'oCategorias':oCategorias,'oCarroCompra':oCarroCompra,'cantidadPro':cantidadPro,}
-    return HttpResponse(template.render(context, request))
+        oProducto = Producto.objects.get(id=carro.producto_id)
+        subTotal = float(oProducto.precioOfertaProducto) * int(carro.cantidad)
+        montoTotal = montoTotal + subTotal
+    if request.method == 'POST':
+        try:
+            userid = request.user.id
+            id_usuario = User.objects.get(id=userid)
+            oCompra = Compra()
+            oCompra.tipoComprobante = "Boleta"
+            oCompra.nroComprobante = "001-0000001"
+            oCompra.montoTotal = montoTotal
+            oCompra.user_id = id_usuario.id
+            oCompra.save()
+        except Exception as e:
+            oCompra = Compra()
+            oCompra.tipoComprobante = "Boleta"
+            oCompra.nroComprobante = "001-0000001"
+            oCompra.montoTotal = montoTotal
+            oCompra.save()
+
+        for carro in oCarroCompra:
+            oCarro = carroCompra.objects.get(id=carro.id)
+            oProductoCompra = Producto_compra()
+            oProductoCompra.cantidad = oCarro.cantidad
+            oProductoCompra.compra_id = oCompra.id
+            oProductoCompra.producto_id = oCarro.producto_id
+            oProductoCompra.save()
+            oProductoLote = Producto_lote.objects.filter(producto_id=oCarro.producto_id).latest('-id')
+            oProductoLote.cantidadinicial = oProductoLote.cantidad
+            cantidadNueva = oProductoLote.cantidad - oCarro.cantidad
+            oProductoLote.cantidad = cantidadNueva
+            oProductoLote.save()
+            oCarro.delete()
+        print('exito')
+        return redirect('/Boleta/imprimir/')
+    else:
+        template = loader.get_template('tienda/realizarCompra.html')
+        oCategorias = Categoria.objects.all()
+        context = {'oCategorias':oCategorias,'oCarroCompra':oCarroCompra,'cantidadPro':cantidadPro,}
+        return HttpResponse(template.render(context, request))
 
 
 def listarProductoTienda(request):
