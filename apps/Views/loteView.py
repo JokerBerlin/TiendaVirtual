@@ -109,3 +109,45 @@ def detalleLote(request,lote_id):
     oProductoLotes = Producto_lote.objects.filter(lote_id=oLote.id)
     context = {'oLote':oLote,'oProductoLotes':oProductoLotes,}
     return HttpResponse(template.render(context, request))
+
+def editarLote(request,lote_id):
+    if request.method == 'POST':
+
+        return redirect('/Lote/listar/')
+    else:
+        oLote = Lote.objects.get(id=lote_id)
+        template = loader.get_template('almacen/editarLote.html')
+        proveedor = oLote.proveedor.nombreProveedor
+        fecha = oLote.fecha
+        oProductoLotes = Producto_lote.objects.filter(lote_id=oLote.id)
+        cantidadLote = []
+        cont = 0
+        cantidadAnterior = 0
+        for oProductoLote in oProductoLotes:
+            oNuevo = {}
+            oNuevo['id']=oProductoLote.id
+            cantidadAnterior = oProductoLote.cantidad - oProductoLote.cantidadinicial
+            oNuevo['cantidad']=cantidadAnterior
+            oNuevo['contador']=cont
+            cantidadLote.append(oNuevo)
+            cont = cont + 1
+        print(cantidadLote)
+        context = {'oLote':oLote,'proveedor': proveedor,'loteId':lote_id,'fecha':fecha, 'lotes':oProductoLotes,'cantidadLote':cantidadLote,}
+        return HttpResponse(template.render(context, request))
+
+@csrf_exempt
+def modificarLote(request):
+    if request.method == 'POST':
+        Datos = json.loads(request.body)
+        print(Datos)
+        dato = Datos['productos']
+        idPedido = Datos['lote']
+        for oLoteProducto in dato:
+
+            id=int(oLoteProducto[0])
+            oProductoLote = Producto_lote.objects.get(id=id)
+            #cantidad = (oPedidoProducto[1])
+            oProductoLote.cantidad = int(oLoteProducto[1]) + oProductoLote.cantidadinicial
+            oProductoLote.save()
+            #oPedidoproductospresentacions = Pedidoproductospresentacions.objects.get(id=id)
+    return HttpResponse(json.dumps({'exito':1}), content_type="application/json")
