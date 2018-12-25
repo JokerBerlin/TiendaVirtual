@@ -75,13 +75,21 @@ def listarCompra(request):
     try:
         userid = request.user.id
         id_usuario = User.objects.get(id=userid)
-        oCompras = Compra.objects.filter(user_id=id_usuario.id)
+        oCompras = Compra.objects.filter(user_id=id_usuario.id).order_by('-id')
         template = loader.get_template('tienda/mostrarCompra.html')
         oCategorias = Categoria.objects.all()
         context = {'oCategorias':oCategorias,'oCompras':oCompras,}
         return HttpResponse(template.render(context, request))
     except Exception as e:
         return redirect('/Tienda/inicio/')
+
+def detalleCompra(request, compra_id):
+    oCompra = Compra.objects.get(id=compra_id)
+    oProductoCompras = Producto_compra.objects.filter(compra_id = compra_id)
+    oCategorias = Categoria.objects.all()
+    template = loader.get_template('tienda/detalleCompra.html')
+    context = {'oCategorias':oCategorias,'oCompra':oCompra,'oProductoCompras':oProductoCompras,}
+    return HttpResponse(template.render(context, request))
 
 def listarCarrito(request):
     try:
@@ -168,7 +176,7 @@ def realizarPago(request):
             oProductoLote.save()
             oCarro.delete()
         print('exito')
-        return redirect('/Boleta/imprimir/')
+        return redirect('/Tienda/listarCompra/')
     else:
         template = loader.get_template('tienda/realizarCompra.html')
         oCategorias = Categoria.objects.all()

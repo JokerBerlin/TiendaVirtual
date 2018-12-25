@@ -47,6 +47,7 @@ urlpatterns = [
     path('Tienda/comprar/',realizarPago, name="realizar_pago"),
 
     path('Tienda/listarCompra/',listarCompra, name="listar_compra"),
+    path('Tienda/detalleCompra/<int:compra_id>/',detalleCompra, name="listar_compra"),
 
 
     path('Tienda/Producto/listar/', listarProductoTienda),

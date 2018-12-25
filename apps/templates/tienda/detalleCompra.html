@@ -42,45 +42,51 @@ Contáctenos
 				<div class="contact-agileinfo">
 					<div class="contact-form wthree">
             <div class="form-group">
-        <table id="tVentas"  class="table">
-          <thead>
-            <tr>
-                <th>#</th>
-                <th>Fecha</th>
-                <th>tipo Comprobante</th>
-                <th>numero Comprobante</th>
-                <th>montoTotal</th>
-                <!--<th>Producto</th>-->
-                <th>Accion</th>
-            </tr>
-        </thead>
-        <tbody>
-          {% for oCompra in oCompras %}
-            <tr>
-              <td>{{ forloop.counter }}</td>
-              <td>{{oCompra.fecha }}</td>
-              <td>{{oCompra.tipoComprobante}}</td>
-              <td>{{oCompra.nroComprobante}}</td>
-              <td>{{oCompra.montoTotal }}</td>
-              <!--<td>
-                {% for oNue in oProductos %}
-                  {% if oVent.id == oNue.id %}
-                      <table id="tProductos" class="table">
-                        <tr>
-                          {{ oNue.producto }}
-                        </tr>
-                      </table>
+              <table id="tCamiones"  class="table">
+                  <tr>
+                    <td>Fecha: </td>
+                    <td>{{ oCompra.fecha }}</td>
 
-                  {% endif %}
-                {% endfor %}
-              </td>-->
-              <td>
-                <a href="/Tienda/detalleCompra/{{oCompra.id}}/"><span class="fa fa-search fa-2x" style="color:purple;"></span></a>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+                  </tr>
+                  <tr>
+                    <td>Tipo de comprobante: </td>
+                    <td>{{ oCompra.tipoComprobante }}</td>
+                  </tr>
+                  <tr>
+                    <td>Numero comprobante: </td>
+                    <td>{{ oCompra.nroComprobante }}</td>
+                  </tr>
+                  <tr>
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <td>Producto</td>
+                          <td>Cantidad</td>
+                          <td>Precio</td>
+                          <td>SubTotal</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for oProductoCompra in oProductoCompras  %}
+                          <tr>
+                            <td>
+                              {{ oProductoCompra.producto.nombreProducto }}
+                            </td>
+                            <td>
+                              {{ oProductoCompra.cantidad }}
+                            </td>
+                            <td>
+                              {{ oProductoCompra.producto.precioOfertaProducto }}
+                            </td>
+                          </tr>
+
+                        {% endfor %}
+                      </tbody>
+                    </table>
+
+                  </tr>
+                </table>
+            </div>
       <br>
 
       <div class="center">
@@ -103,7 +109,7 @@ Contáctenos
                 {% endif %}
 					</div>
 
-				</div>
+
 			</div>
 			<!-- //contact -->
 		</div>
