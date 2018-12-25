@@ -5,6 +5,7 @@ from apps.Views.tiendaView import *
 from apps.Views.usuarioView import *
 from apps.Views.proveedorView import *
 from apps.Views.loteView import *
+from apps.Views.compraView import *
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -34,6 +35,7 @@ urlpatterns = [
     path('Carro/eliminar/<int:carro_id>/',eliminarCarro, name="eliminar_carro"),
     path('Carro/editar/',editarCarro, name="editar_carro"),
 
+    path('Compra/listar/usuarios/',listarCompraUsuario, name="listar_compra"),
 
     path('Tienda/inicio/', LoginTienda,name="mostrar_inicio"),
     path('Tienda/contacto/', mostrarContacto),
