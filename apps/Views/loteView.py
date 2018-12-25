@@ -28,7 +28,7 @@ def listarLote(request):
     template = loader.get_template('almacen/listarLote.html')
     oProductos = []
     for lote in oLote:
-        oLoteProducto = Producto_lote.objects.filter(lote_id=lote.id)
+        oLoteProducto = Producto_lote.objects.filter(lote_id=lote.id).order_by('-id')
         for oloPro in oLoteProducto:
             oNuevo={}
             oNuevo['id']=lote.id

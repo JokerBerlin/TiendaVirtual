@@ -58,7 +58,7 @@ def mostrarAyuda(request):
 def detalleProductoTienda(request, id):
     oProducto = Producto.objects.get(id=id)
     try:
-        oProductoLote = Producto_lote.objects.filter(producto_id=oProducto.id).latest('-id')
+        oProductoLote = Producto_lote.objects.filter(producto_id=oProducto.id).latest('id')
     except Exception as e:
         oProducto = ''
         oProductoLote = ''
@@ -113,7 +113,7 @@ def listarCarrito(request):
     print(oCarroCompra)
     cantidadPro = []
     for carro in oCarroCompra:
-        oLote = Producto_lote.objects.filter(producto_id=carro.producto_id).latest('-id')
+        oLote = Producto_lote.objects.filter(producto_id=carro.producto_id).latest('id')
         nuevo = {}
         nuevo["id"] = carro.id
         nuevo["cantidad"] = oLote.cantidad
@@ -181,7 +181,7 @@ def realizarPago(request):
             oProductoCompra.compra_id = oCompra.id
             oProductoCompra.producto_id = oCarro.producto_id
             oProductoCompra.save()
-            oProductoLote = Producto_lote.objects.filter(producto_id=oCarro.producto_id).latest('-id')
+            oProductoLote = Producto_lote.objects.filter(producto_id=oCarro.producto_id).latest('id')
             oProductoLote.cantidadinicial = oProductoLote.cantidad
             cantidadNueva = oProductoLote.cantidad - oCarro.cantidad
             oProductoLote.cantidad = cantidadNueva
