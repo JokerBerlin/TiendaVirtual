@@ -78,9 +78,16 @@ def listarCarrito(request):
     except Exception as e:
         oCarroCompra = carroCompra.objects.filter(estado=True,user_id=None)
     print(oCarroCompra)
+    cantidadPro = []
+    for carro in oCarroCompra:
+        oLote = Producto_lote.objects.filter(producto_id=carro.producto_id).latest('-id')
+        nuevo = {}
+        nuevo["id"] = carro.id
+        nuevo["cantidad"] = oLote.cantidad
+        cantidadPro.append(nuevo)
     template = loader.get_template('tienda/listarCarrito.html')
     oCategorias = Categoria.objects.all()
-    context = {'oCategorias':oCategorias,'oCarroCompra':oCarroCompra,}
+    context = {'oCategorias':oCategorias,'oCarroCompra':oCarroCompra,'cantidadPro':cantidadPro,}
     return HttpResponse(template.render(context, request))
 
 def mostrarPago(request):
