@@ -73,3 +73,10 @@ class Producto_compra(models.Model):
     cantidad = models.IntegerField()
     producto = models.ForeignKey(Producto, on_delete=models.PROTECT)  # Field name made lowercase.
     compra = models.ForeignKey(Compra, on_delete=models.CASCADE)  # Field name made lowercase.
+
+class Medio_pago(models.Model):
+    nombreEnTarjeta = models.CharField(max_length=30)
+    numeroTarjeta = models.CharField(max_length=16)
+    ccv = models.CharField(max_length=3)
+    fechaExpiracion = models.CharField(max_length=5)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.PROTECT)  # Field name made lowercase.
