@@ -32,7 +32,7 @@ urlpatterns = [
     path('Proveedor/buscarajax/', buscarProveedorAjax, name = "buscar_proveedor_ajax"),
     path('Carro/insertar/',CrearCarroAjax, name="crear_carro_ajax"),
     path('Carro/eliminar/<int:carro_id>/',eliminarCarro, name="eliminar_carro"),
-    path('Carro/editar/<int:carro_id>/',editarCarro, name="editar_carro"),
+    path('Carro/editar/',editarCarro, name="editar_carro"),
 
 
     path('Tienda/inicio/', pruebaTienda,name="mostrar_inicio"),

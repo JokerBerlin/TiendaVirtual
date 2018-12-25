@@ -53,6 +53,8 @@ Listar Carrito
 {% block content %}
 
 	<!-- page -->
+  <script src="/static/tienda/js/editarCarrito.js"></script>
+
 	<div class="services-breadcrumb">
 		<div class="agile_inner_breadcrumb">
 			<div class="container">
@@ -109,12 +111,12 @@ Listar Carrito
 
                           </td>
                           <td class="invert">
-                            <input type="number" class="form-control" value="{{ carro.cantidad }}" max="{{ cant.cantidad }}">
+                            <input type="number" id="cambiarValor{{ carro.id }}" class="form-control" value="{{ carro.cantidad }}" max="{{ cant.cantidad }}">
                           </td>
                           <td class="invert">{{ carro.producto.nombreProducto }}</td>
                           <td class="invert">S/. {{ carro.producto.precioOfertaProducto }}</td>
                           <td class="invert">
-                            <a href="/Carro/editar/{{ carro.id }}/" class="fa fa-edit fa-2x fa-lg" style="color:#00000;"></a>
+                            <a role="button" class="fa fa-edit fa-2x fa-lg" style="color:#00000;" onclick="editarCarrito({{carro.id}})"></a>
                           </td>
                           <td class="invert">
                             <div class="rem">

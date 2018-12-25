@@ -153,6 +153,22 @@ def eliminarCarro(request, carro_id):
     oCarro.delete()
     return redirect('/Tienda/carrito/listar/')
 
+@csrf_exempt
+def editarCarro(request):
+    if request.method == 'POST':
+            Datos = json.loads(request.body)
+            idCarro = Datos['idCarro']
+            cantidadN = Datos['cantidad']
+            # if nombreProveedor.isdigit() == False :
+            #     nombreProveedor = Proveedor.objects.get(nombre=nombreProveedor).documento
+
+            oCarroCompra = carroCompra.objects.get(id=idCarro)
+            oCarroCompra.cantidad = cantidadN
+            oCarroCompra.save()
+
+            return HttpResponse(json.dumps({'exito':1}), content_type="application/json")
+
+
 
 @csrf_exempt
 def CrearCarroAjax(request):
